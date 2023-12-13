@@ -31,6 +31,7 @@ namespace Projecrt.V11
         private void button_Add_BMS_Click(object sender, EventArgs e)
         {
             FormAdd formAdd = new FormAdd();
+
             formAdd.ShowDialog();
         }
     }
