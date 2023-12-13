@@ -12,8 +12,7 @@ namespace Project.V11.Lib
             // Метод для обработки фамилии
             public static string ProcessLastName(string lastName)
             {
-                // Проверка на null и удаление лишних пробелов
-                return lastName?.Trim();
+                
             }
         
     }
