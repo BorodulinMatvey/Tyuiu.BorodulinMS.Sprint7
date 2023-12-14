@@ -20,49 +20,6 @@ namespace Projecrt.V11
         private void button_LastName_BMS_Click(object sender, EventArgs e)
 
         {
-            // Получаем текст из TextBox
-            string nAme = textBox_Name_BMS.Text;
-            string lnAme = textBox_LastName_BMS.Text;
-            string aDdrees = textBox_Address_BMS.Text;
-            string dateofbirth = textBox_DateOfBirth_BMS.Text;
-
-            // Проверяем, содержит ли TextBox текст
-            if (string.IsNullOrEmpty(nAme) || string.IsNullOrEmpty(lnAme) || string.IsNullOrEmpty(aDdrees) || string.IsNullOrEmpty(dateofbirth))
-            {
-                MessageBox.Show("Пожалуйста, введите текст в поле со здвездочкой (*).");
-                return; // Останавливаем выполнение сохранения из-за невалидных данных
-            }
-
-            
-
-           
-
-            {
-                //Формируем ячейки Exel
-                string lastName = "Фамилия";
-                string name = "Имя";
-                string surName = "Отчество";
-                string address = "Адрес";
-                string phoneNuber = "Номер Телефона";
-                string salarry = "Оклад";
-                string divisionName = "Наименование подразделения";
-                string dateOfBirth = "Дата рождения";
-                string jobTitle = "Должность";
-                // Формируем строку для сохранения
-                string dataToSave = $"{lastName};{name};{surName};{address};{phoneNuber};{salarry};{divisionName};{dateOfBirth};{jobTitle}";
-                // Открываем файл для записи (если файла нет, он будет создан)
-                using (StreamWriter sw = new StreamWriter("saved_data.csv", true, Encoding.UTF8))
-                {
-
-
-                    if (new FileInfo("saved_data.csv").Length == 0)
-                    {
-                        sw.WriteLine(string.Join(",", dataToSave));
-                    }
-
-                }
-            }
-            { 
             // Получаем данные из TextBox'ов
             string LastName = textBox_LastName_BMS.Text;
             string Name = textBox_Name_BMS.Text;
@@ -77,24 +34,30 @@ namespace Projecrt.V11
             // Формируем строку для сохранения
             string DataToSave = $"{LastName};{Name};{SurName};{Address};{PhoneNuber};{Salarry};{DivisionName};{DateOfBirth};{JobTitle}";
 
-                try
+            try
+            {
+                // Открываем файл для записи
+                using (StreamWriter sw = new StreamWriter("saved_data.csv", true, Encoding.UTF8))
                 {
-                    // Открываем файл для записи (если файла нет, он будет создан)
-                    using (StreamWriter sw = new StreamWriter("saved_data.csv", true, Encoding.UTF8))
+                    // Если файл пуст, добавляем заголовки столбцов
+                    if (new FileInfo("saved_data.csv").Length == 0)
                     {
-
-                        // Записываем данные в новый столбец
-                        sw.WriteLine(DataToSave.Replace(",", ";\t"));
+                        string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Оклад;Наименование подразделения;Дата рождения;Должность";
+                        sw.WriteLine(header);
                     }
 
-                    MessageBox.Show("Данные успешно сохранены!");
+                    // Записываем данные в новую строку
+                    sw.WriteLine(DataToSave.Replace(",", ";"));
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
-                }
+
+                MessageBox.Show("Данные успешно сохранены!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
             }
         }
+        
 
         private void button_Name_BMS_Click(object sender, EventArgs e)
         { 

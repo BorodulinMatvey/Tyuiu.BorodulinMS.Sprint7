@@ -52,6 +52,7 @@ namespace Projecrt.V11
             this.label_Necessarily_LastName_BMS = new System.Windows.Forms.Label();
             this.label_Necessarily_Address_BMS = new System.Windows.Forms.Label();
             this.label_Necessarily_DateOfBirth_BMS = new System.Windows.Forms.Label();
+            this.label_Explanation_BMS = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_LastName_BMS
@@ -248,11 +249,22 @@ namespace Projecrt.V11
             this.label_Necessarily_DateOfBirth_BMS.TabIndex = 3;
             this.label_Necessarily_DateOfBirth_BMS.Text = "*";
             // 
+            // label_Explanation_BMS
+            // 
+            this.label_Explanation_BMS.AutoSize = true;
+            this.label_Explanation_BMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_Explanation_BMS.Location = new System.Drawing.Point(25, 257);
+            this.label_Explanation_BMS.Name = "label_Explanation_BMS";
+            this.label_Explanation_BMS.Size = new System.Drawing.Size(361, 24);
+            this.label_Explanation_BMS.TabIndex = 4;
+            this.label_Explanation_BMS.Text = "* - обязательное поле для заполнения ";
+            // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 347);
+            this.Controls.Add(this.label_Explanation_BMS);
             this.Controls.Add(this.label_Necessarily_LastName_BMS);
             this.Controls.Add(this.label_Necessarily_DateOfBirth_BMS);
             this.Controls.Add(this.label_Necessarily_Address_BMS);
@@ -277,6 +289,7 @@ namespace Projecrt.V11
             this.Controls.Add(this.label_Name_BMS);
             this.Controls.Add(this.label_LastName_BMS);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(582, 386);
             this.Name = "FormAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdd";
@@ -310,5 +323,6 @@ namespace Projecrt.V11
         private System.Windows.Forms.Label label_Necessarily_LastName_BMS;
         private System.Windows.Forms.Label label_Necessarily_Address_BMS;
         private System.Windows.Forms.Label label_Necessarily_DateOfBirth_BMS;
+        private System.Windows.Forms.Label label_Explanation_BMS;
     }
 }

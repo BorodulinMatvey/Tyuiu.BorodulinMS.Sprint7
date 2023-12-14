@@ -31,8 +31,18 @@ namespace Projecrt.V11
         private void button_Add_BMS_Click(object sender, EventArgs e)
         {
             FormAdd formAdd = new FormAdd();
-
             formAdd.ShowDialog();
+        }
+
+        private void button_Sort_BMS_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button_Statistic_BMS_Click(object sender, EventArgs e)
+        {
+            FormSerch formStatistic = new FormSerch();
+            formStatistic.ShowDialog();
         }
     }
 }
