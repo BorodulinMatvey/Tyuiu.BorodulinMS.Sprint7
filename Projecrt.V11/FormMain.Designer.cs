@@ -49,7 +49,7 @@ namespace Projecrt.V11
             this.button_Sort_BMS.Name = "button_Sort_BMS";
             this.button_Sort_BMS.Size = new System.Drawing.Size(75, 109);
             this.button_Sort_BMS.TabIndex = 2;
-            this.button_Sort_BMS.Text = "Сортировка ";
+            this.button_Sort_BMS.Text = "Поиск";
             this.button_Sort_BMS.UseVisualStyleBackColor = true;
             this.button_Sort_BMS.Click += new System.EventHandler(this.button_Statistic_BMS_Click);
             // 

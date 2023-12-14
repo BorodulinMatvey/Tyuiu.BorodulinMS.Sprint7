@@ -36,11 +36,14 @@ namespace Projecrt.V11
 
             try
             {
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string filePath = Path.Combine(desktopPath, "saved_data.csv");
+
                 // Открываем файл для записи
-                using (StreamWriter sw = new StreamWriter("saved_data.csv", true, Encoding.UTF8))
+                using (StreamWriter sw = new StreamWriter(filePath, true, Encoding.UTF8))
                 {
                     // Если файл пуст, добавляем заголовки столбцов
-                    if (new FileInfo("saved_data.csv").Length == 0)
+                    if (new FileInfo(filePath).Length == 0)
                     {
                         string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Оклад;Наименование подразделения;Дата рождения;Должность";
                         sw.WriteLine(header);
