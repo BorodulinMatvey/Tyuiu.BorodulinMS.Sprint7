@@ -41,8 +41,14 @@ namespace Projecrt.V11
 
         private void button_Statistic_BMS_Click(object sender, EventArgs e)
         {
-            FormSerch formStatistic = new FormSerch();
-            formStatistic.ShowDialog();
+            FormSerch formSerch = new FormSerch();
+            formSerch.ShowDialog();
+        }
+
+        private void button_Editing_BMS_Click(object sender, EventArgs e)
+        {
+            FormEditing formEditing = new FormEditing();
+            formEditing.ShowDialog();
         }
     }
 }

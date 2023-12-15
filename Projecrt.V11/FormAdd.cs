@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+
 namespace Projecrt.V11
 {
     public partial class FormAdd : Form
@@ -18,7 +19,6 @@ namespace Projecrt.V11
         }
 
         private void button_LastName_BMS_Click(object sender, EventArgs e)
-
         {
             // Получаем данные из TextBox'ов
             string LastName = textBox_LastName_BMS.Text;
@@ -31,39 +31,49 @@ namespace Projecrt.V11
             string DateOfBirth = textBox_DateOfBirth_BMS.Text;
             string JobTitle = textBox_JobTitle_BMS.Text;
 
-            // Формируем строку для сохранения
-            string DataToSave = $"{LastName};{Name};{SurName};{Address};{PhoneNuber};{Salarry};{DivisionName};{DateOfBirth};{JobTitle}";
-
-            try
+            // Проверяем, что все TextBox'ы содержат текст
+            if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(SurName) ||
+                string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(PhoneNuber) || string.IsNullOrWhiteSpace(Salarry) ||
+                string.IsNullOrWhiteSpace(DivisionName) || string.IsNullOrWhiteSpace(DateOfBirth) || string.IsNullOrWhiteSpace(JobTitle))
             {
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string filePath = Path.Combine(desktopPath, "saved_data.csv");
+                MessageBox.Show("Пожалуйста, заполните все поля перед сохранением данных.");
+            }
+            else
+            {
+                // Формируем строку для сохранения
+                string DataToSave = $"{LastName};{Name};{SurName};{Address};{PhoneNuber};{Salarry};{DivisionName};{DateOfBirth};{JobTitle}";
 
-                // Открываем файл для записи
-                using (StreamWriter sw = new StreamWriter(filePath, true, Encoding.UTF8))
+                try
                 {
-                    // Если файл пуст, добавляем заголовки столбцов
-                    if (new FileInfo(filePath).Length == 0)
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    string filePath = Path.Combine(desktopPath, "saved_data.csv");
+
+                    // Открываем файл для записи
+                    using (StreamWriter sw = new StreamWriter(filePath, true, Encoding.UTF8))
                     {
-                        string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Оклад;Наименование подразделения;Дата рождения;Должность";
-                        sw.WriteLine(header);
+                        // Если файл пуст, добавляем заголовки столбцов
+                        if (new FileInfo(filePath).Length == 0)
+                        {
+                            string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Оклад;Наименование подразделения;Дата рождения;Должность";
+                            sw.WriteLine(header);
+                        }
+
+                        // Записываем данные в новую строку
+                        sw.WriteLine(DataToSave.Replace(",", ";"));
                     }
 
-                    // Записываем данные в новую строку
-                    sw.WriteLine(DataToSave.Replace(",", ";"));
+                    MessageBox.Show("Данные успешно сохранены!");
                 }
-
-                MessageBox.Show("Данные успешно сохранены!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
+                }
             }
         }
-        
 
         private void button_Name_BMS_Click(object sender, EventArgs e)
-        { 
+        {
+           
         }
 
         private void button_SurName_BMS_Click(object sender, EventArgs e)

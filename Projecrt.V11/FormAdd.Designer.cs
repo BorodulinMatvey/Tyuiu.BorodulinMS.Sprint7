@@ -29,6 +29,7 @@ namespace Projecrt.V11
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label_LastName_BMS = new System.Windows.Forms.Label();
             this.label_Name_BMS = new System.Windows.Forms.Label();
             this.label_SurName_BMS = new System.Windows.Forms.Label();
@@ -48,11 +49,7 @@ namespace Projecrt.V11
             this.textBox_Address_BMS = new System.Windows.Forms.TextBox();
             this.textBox_DateOfBirth_BMS = new System.Windows.Forms.TextBox();
             this.button_LastName_BMS = new System.Windows.Forms.Button();
-            this.label_Necessarily_Name_BMS = new System.Windows.Forms.Label();
-            this.label_Necessarily_LastName_BMS = new System.Windows.Forms.Label();
-            this.label_Necessarily_Address_BMS = new System.Windows.Forms.Label();
-            this.label_Necessarily_DateOfBirth_BMS = new System.Windows.Forms.Label();
-            this.label_Explanation_BMS = new System.Windows.Forms.Label();
+            this.toolTip_FormAdd_BMS = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label_LastName_BMS
@@ -206,69 +203,21 @@ namespace Projecrt.V11
             this.button_LastName_BMS.Size = new System.Drawing.Size(75, 23);
             this.button_LastName_BMS.TabIndex = 2;
             this.button_LastName_BMS.Text = "Сохранить ";
+            this.toolTip_FormAdd_BMS.SetToolTip(this.button_LastName_BMS, "Нажмите на кнопку, чтобы сохранить данные о сотруднике");
             this.button_LastName_BMS.UseVisualStyleBackColor = true;
             this.button_LastName_BMS.Click += new System.EventHandler(this.button_LastName_BMS_Click);
             // 
-            // label_Necessarily_Name_BMS
+            // toolTip_FormAdd_BMS
             // 
-            this.label_Necessarily_Name_BMS.AutoSize = true;
-            this.label_Necessarily_Name_BMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Necessarily_Name_BMS.Location = new System.Drawing.Point(462, 29);
-            this.label_Necessarily_Name_BMS.Name = "label_Necessarily_Name_BMS";
-            this.label_Necessarily_Name_BMS.Size = new System.Drawing.Size(17, 24);
-            this.label_Necessarily_Name_BMS.TabIndex = 3;
-            this.label_Necessarily_Name_BMS.Text = "*";
-            // 
-            // label_Necessarily_LastName_BMS
-            // 
-            this.label_Necessarily_LastName_BMS.AutoSize = true;
-            this.label_Necessarily_LastName_BMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Necessarily_LastName_BMS.Location = new System.Drawing.Point(462, 2);
-            this.label_Necessarily_LastName_BMS.Name = "label_Necessarily_LastName_BMS";
-            this.label_Necessarily_LastName_BMS.Size = new System.Drawing.Size(17, 24);
-            this.label_Necessarily_LastName_BMS.TabIndex = 3;
-            this.label_Necessarily_LastName_BMS.Text = "*";
-            // 
-            // label_Necessarily_Address_BMS
-            // 
-            this.label_Necessarily_Address_BMS.AutoSize = true;
-            this.label_Necessarily_Address_BMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Necessarily_Address_BMS.Location = new System.Drawing.Point(462, 84);
-            this.label_Necessarily_Address_BMS.Name = "label_Necessarily_Address_BMS";
-            this.label_Necessarily_Address_BMS.Size = new System.Drawing.Size(17, 24);
-            this.label_Necessarily_Address_BMS.TabIndex = 3;
-            this.label_Necessarily_Address_BMS.Text = "*";
-            // 
-            // label_Necessarily_DateOfBirth_BMS
-            // 
-            this.label_Necessarily_DateOfBirth_BMS.AutoSize = true;
-            this.label_Necessarily_DateOfBirth_BMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Necessarily_DateOfBirth_BMS.Location = new System.Drawing.Point(462, 187);
-            this.label_Necessarily_DateOfBirth_BMS.Name = "label_Necessarily_DateOfBirth_BMS";
-            this.label_Necessarily_DateOfBirth_BMS.Size = new System.Drawing.Size(17, 24);
-            this.label_Necessarily_DateOfBirth_BMS.TabIndex = 3;
-            this.label_Necessarily_DateOfBirth_BMS.Text = "*";
-            // 
-            // label_Explanation_BMS
-            // 
-            this.label_Explanation_BMS.AutoSize = true;
-            this.label_Explanation_BMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Explanation_BMS.Location = new System.Drawing.Point(25, 257);
-            this.label_Explanation_BMS.Name = "label_Explanation_BMS";
-            this.label_Explanation_BMS.Size = new System.Drawing.Size(361, 24);
-            this.label_Explanation_BMS.TabIndex = 4;
-            this.label_Explanation_BMS.Text = "* - обязательное поле для заполнения ";
+            this.toolTip_FormAdd_BMS.IsBalloon = true;
+            this.toolTip_FormAdd_BMS.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip_FormAdd_BMS.ToolTipTitle = "Подсказка";
             // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 347);
-            this.Controls.Add(this.label_Explanation_BMS);
-            this.Controls.Add(this.label_Necessarily_LastName_BMS);
-            this.Controls.Add(this.label_Necessarily_DateOfBirth_BMS);
-            this.Controls.Add(this.label_Necessarily_Address_BMS);
-            this.Controls.Add(this.label_Necessarily_Name_BMS);
             this.Controls.Add(this.button_LastName_BMS);
             this.Controls.Add(this.textBox_DateOfBirth_BMS);
             this.Controls.Add(this.textBox_Address_BMS);
@@ -289,10 +238,11 @@ namespace Projecrt.V11
             this.Controls.Add(this.label_Name_BMS);
             this.Controls.Add(this.label_LastName_BMS);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(582, 386);
             this.MinimumSize = new System.Drawing.Size(582, 386);
             this.Name = "FormAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormAdd";
+            this.Text = "Добавление данных сотрудника";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,10 +269,6 @@ namespace Projecrt.V11
         private System.Windows.Forms.TextBox textBox_Address_BMS;
         private System.Windows.Forms.TextBox textBox_DateOfBirth_BMS;
         private System.Windows.Forms.Button button_LastName_BMS;
-        private System.Windows.Forms.Label label_Necessarily_Name_BMS;
-        private System.Windows.Forms.Label label_Necessarily_LastName_BMS;
-        private System.Windows.Forms.Label label_Necessarily_Address_BMS;
-        private System.Windows.Forms.Label label_Necessarily_DateOfBirth_BMS;
-        private System.Windows.Forms.Label label_Explanation_BMS;
+        private System.Windows.Forms.ToolTip toolTip_FormAdd_BMS;
     }
 }
