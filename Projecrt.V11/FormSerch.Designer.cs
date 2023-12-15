@@ -104,8 +104,7 @@ namespace Projecrt.V11
             // 
             this.groupBox_Load_BMS.Controls.Add(this.dataGridView_Result_BMS);
             this.groupBox_Load_BMS.Controls.Add(this.button_Load_BMS);
-            this.groupBox_Load_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_Load_BMS.Location = new System.Drawing.Point(0, 0);
+            this.groupBox_Load_BMS.Location = new System.Drawing.Point(22, 3);
             this.groupBox_Load_BMS.Name = "groupBox_Load_BMS";
             this.groupBox_Load_BMS.Size = new System.Drawing.Size(1249, 296);
             this.groupBox_Load_BMS.TabIndex = 4;
@@ -118,10 +117,9 @@ namespace Projecrt.V11
             this.groupBox_Find_BMS.Controls.Add(this.dataGridView_Find_BMS);
             this.groupBox_Find_BMS.Controls.Add(this.button_Find_BMS);
             this.groupBox_Find_BMS.Controls.Add(this.textBox_Find_BMS);
-            this.groupBox_Find_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_Find_BMS.Location = new System.Drawing.Point(0, 0);
+            this.groupBox_Find_BMS.Location = new System.Drawing.Point(22, 6);
             this.groupBox_Find_BMS.Name = "groupBox_Find_BMS";
-            this.groupBox_Find_BMS.Size = new System.Drawing.Size(1249, 284);
+            this.groupBox_Find_BMS.Size = new System.Drawing.Size(1249, 281);
             this.groupBox_Find_BMS.TabIndex = 5;
             this.groupBox_Find_BMS.TabStop = false;
             this.groupBox_Find_BMS.Text = "Поиск";
@@ -141,16 +139,16 @@ namespace Projecrt.V11
             this.panel_Load_BMS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Load_BMS.Location = new System.Drawing.Point(0, 0);
             this.panel_Load_BMS.Name = "panel_Load_BMS";
-            this.panel_Load_BMS.Size = new System.Drawing.Size(1249, 296);
+            this.panel_Load_BMS.Size = new System.Drawing.Size(1249, 261);
             this.panel_Load_BMS.TabIndex = 6;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox_Find_BMS);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 302);
+            this.panel1.Location = new System.Drawing.Point(0, 296);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1249, 284);
+            this.panel1.Size = new System.Drawing.Size(1249, 290);
             this.panel1.TabIndex = 5;
             // 
             // toolTip_FormSerch_BMS

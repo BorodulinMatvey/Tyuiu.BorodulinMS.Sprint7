@@ -1,5 +1,5 @@
 ﻿
-namespace Projectr.V11
+namespace Project.V11
 {
     partial class FormMain
     {
@@ -31,14 +31,14 @@ namespace Projectr.V11
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.button_Sort_BMS = new System.Windows.Forms.Button();
-            this.toolTip_FormMain_BMS = new System.Windows.Forms.ToolTip(this.components);
-            this.button_Save_BMS = new System.Windows.Forms.Button();
-            this.button_ShowResult_BMS = new System.Windows.Forms.Button();
-            this.button_Add_BMS = new System.Windows.Forms.Button();
-            this.button_Editing_BMS = new System.Windows.Forms.Button();
             this.panel_Button_BMS = new System.Windows.Forms.Panel();
+            this.button_Editing_BMS = new System.Windows.Forms.Button();
+            this.button_Serch_BMS = new System.Windows.Forms.Button();
+            this.panel_Add_BMS = new System.Windows.Forms.Panel();
             this.groupBox_Add_BMS = new System.Windows.Forms.GroupBox();
+            this.button_Help_BMS = new System.Windows.Forms.Button();
+            this.button_Add_BMS = new System.Windows.Forms.Button();
+            this.button_Save_BMS = new System.Windows.Forms.Button();
             this.textBox_JobTitle_BMS = new System.Windows.Forms.TextBox();
             this.textBox_Name_BMS = new System.Windows.Forms.TextBox();
             this.textBox_PhoneNuber_BMS = new System.Windows.Forms.TextBox();
@@ -57,66 +57,29 @@ namespace Projectr.V11
             this.label_JobTitle_BMS = new System.Windows.Forms.Label();
             this.label_PhoneNuber_BMS = new System.Windows.Forms.Label();
             this.label_DateOfBirth_BMS = new System.Windows.Forms.Label();
-            this.panel_Add_BMS = new System.Windows.Forms.Panel();
+            this.button_ShowResult_BMS = new System.Windows.Forms.Button();
             this.panel_ResultAdd_BMS = new System.Windows.Forms.Panel();
+            this.groupBox_Result_BMS = new System.Windows.Forms.GroupBox();
             this.dataGridView_Result_BMS = new System.Windows.Forms.DataGridView();
+            this.toolTip_FormMain_BMS = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog_SaveFile_BMS = new System.Windows.Forms.SaveFileDialog();
             this.panel_Button_BMS.SuspendLayout();
-            this.groupBox_Add_BMS.SuspendLayout();
             this.panel_Add_BMS.SuspendLayout();
+            this.groupBox_Add_BMS.SuspendLayout();
             this.panel_ResultAdd_BMS.SuspendLayout();
+            this.groupBox_Result_BMS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result_BMS)).BeginInit();
             this.SuspendLayout();
             // 
-            // button_Sort_BMS
+            // panel_Button_BMS
             // 
-            this.button_Sort_BMS.Location = new System.Drawing.Point(12, 12);
-            this.button_Sort_BMS.Name = "button_Sort_BMS";
-            this.button_Sort_BMS.Size = new System.Drawing.Size(69, 49);
-            this.button_Sort_BMS.TabIndex = 2;
-            this.button_Sort_BMS.Text = "Поиск";
-            this.toolTip_FormMain_BMS.SetToolTip(this.button_Sort_BMS, "Нажмите на кнопку, чтобы выполнить поиск данных ");
-            this.button_Sort_BMS.UseVisualStyleBackColor = true;
-            this.button_Sort_BMS.Click += new System.EventHandler(this.button_Statistic_BMS_Click);
-            // 
-            // toolTip_FormMain_BMS
-            // 
-            this.toolTip_FormMain_BMS.IsBalloon = true;
-            this.toolTip_FormMain_BMS.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip_FormMain_BMS.ToolTipTitle = "Подсказка";
-            // 
-            // button_Save_BMS
-            // 
-            this.button_Save_BMS.Image = ((System.Drawing.Image)(resources.GetObject("button_Save_BMS.Image")));
-            this.button_Save_BMS.Location = new System.Drawing.Point(15, 44);
-            this.button_Save_BMS.Name = "button_Save_BMS";
-            this.button_Save_BMS.Size = new System.Drawing.Size(52, 52);
-            this.button_Save_BMS.TabIndex = 4;
-            this.toolTip_FormMain_BMS.SetToolTip(this.button_Save_BMS, "Данная кнопка предназначена для первого создания файла\r\n\r\n");
-            this.button_Save_BMS.UseVisualStyleBackColor = true;
-            this.button_Save_BMS.Click += new System.EventHandler(this.button_Save_BMS_Click);
-            // 
-            // button_ShowResult_BMS
-            // 
-            this.button_ShowResult_BMS.Location = new System.Drawing.Point(170, 44);
-            this.button_ShowResult_BMS.Name = "button_ShowResult_BMS";
-            this.button_ShowResult_BMS.Size = new System.Drawing.Size(93, 52);
-            this.button_ShowResult_BMS.TabIndex = 25;
-            this.button_ShowResult_BMS.Text = "Показать добавленныен данные ";
-            this.toolTip_FormMain_BMS.SetToolTip(this.button_ShowResult_BMS, "Кнорка позволяет просмотреть введенные данные \r\n");
-            this.button_ShowResult_BMS.UseVisualStyleBackColor = true;
-            this.button_ShowResult_BMS.Click += new System.EventHandler(this.button_ShowResult_BMS_Click);
-            // 
-            // button_Add_BMS
-            // 
-            this.button_Add_BMS.Location = new System.Drawing.Point(73, 44);
-            this.button_Add_BMS.Name = "button_Add_BMS";
-            this.button_Add_BMS.Size = new System.Drawing.Size(91, 52);
-            this.button_Add_BMS.TabIndex = 26;
-            this.button_Add_BMS.Text = "Добавить данные";
-            this.toolTip_FormMain_BMS.SetToolTip(this.button_Add_BMS, "Кнопка позволяет добавить данные в таблицу из поля ниже\r\n");
-            this.button_Add_BMS.UseVisualStyleBackColor = true;
-            this.button_Add_BMS.Click += new System.EventHandler(this.button_Add_BMS_Click);
+            this.panel_Button_BMS.Controls.Add(this.button_Editing_BMS);
+            this.panel_Button_BMS.Controls.Add(this.button_Serch_BMS);
+            this.panel_Button_BMS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_Button_BMS.Location = new System.Drawing.Point(0, 0);
+            this.panel_Button_BMS.Name = "panel_Button_BMS";
+            this.panel_Button_BMS.Size = new System.Drawing.Size(1039, 81);
+            this.panel_Button_BMS.TabIndex = 6;
             // 
             // button_Editing_BMS
             // 
@@ -125,23 +88,34 @@ namespace Projectr.V11
             this.button_Editing_BMS.Size = new System.Drawing.Size(104, 49);
             this.button_Editing_BMS.TabIndex = 3;
             this.button_Editing_BMS.Text = "Редактирование ";
+            this.toolTip_FormMain_BMS.SetToolTip(this.button_Editing_BMS, "Перейти в окно редактирования ");
             this.button_Editing_BMS.UseVisualStyleBackColor = true;
             this.button_Editing_BMS.Click += new System.EventHandler(this.button_Editing_BMS_Click);
             // 
-            // panel_Button_BMS
+            // button_Serch_BMS
             // 
-            this.panel_Button_BMS.Controls.Add(this.button_Editing_BMS);
-            this.panel_Button_BMS.Controls.Add(this.button_Sort_BMS);
-            this.panel_Button_BMS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Button_BMS.Location = new System.Drawing.Point(0, 0);
-            this.panel_Button_BMS.Name = "panel_Button_BMS";
-            this.panel_Button_BMS.Size = new System.Drawing.Size(1039, 68);
-            this.panel_Button_BMS.TabIndex = 4;
+            this.button_Serch_BMS.Location = new System.Drawing.Point(12, 12);
+            this.button_Serch_BMS.Name = "button_Serch_BMS";
+            this.button_Serch_BMS.Size = new System.Drawing.Size(69, 49);
+            this.button_Serch_BMS.TabIndex = 2;
+            this.button_Serch_BMS.Text = "Поиск";
+            this.toolTip_FormMain_BMS.SetToolTip(this.button_Serch_BMS, "Перейти в окно поиска");
+            this.button_Serch_BMS.UseVisualStyleBackColor = true;
+            this.button_Serch_BMS.Click += new System.EventHandler(this.button_Serch_BMS_Click);
+            // 
+            // panel_Add_BMS
+            // 
+            this.panel_Add_BMS.Controls.Add(this.groupBox_Add_BMS);
+            this.panel_Add_BMS.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel_Add_BMS.Location = new System.Drawing.Point(0, 81);
+            this.panel_Add_BMS.Name = "panel_Add_BMS";
+            this.panel_Add_BMS.Size = new System.Drawing.Size(510, 456);
+            this.panel_Add_BMS.TabIndex = 7;
             // 
             // groupBox_Add_BMS
             // 
+            this.groupBox_Add_BMS.Controls.Add(this.button_Help_BMS);
             this.groupBox_Add_BMS.Controls.Add(this.button_Add_BMS);
-            this.groupBox_Add_BMS.Controls.Add(this.button_ShowResult_BMS);
             this.groupBox_Add_BMS.Controls.Add(this.button_Save_BMS);
             this.groupBox_Add_BMS.Controls.Add(this.textBox_JobTitle_BMS);
             this.groupBox_Add_BMS.Controls.Add(this.textBox_Name_BMS);
@@ -161,12 +135,47 @@ namespace Projectr.V11
             this.groupBox_Add_BMS.Controls.Add(this.label_JobTitle_BMS);
             this.groupBox_Add_BMS.Controls.Add(this.label_PhoneNuber_BMS);
             this.groupBox_Add_BMS.Controls.Add(this.label_DateOfBirth_BMS);
-            this.groupBox_Add_BMS.Location = new System.Drawing.Point(0, 26);
+            this.groupBox_Add_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox_Add_BMS.Location = new System.Drawing.Point(0, 0);
             this.groupBox_Add_BMS.Name = "groupBox_Add_BMS";
-            this.groupBox_Add_BMS.Size = new System.Drawing.Size(510, 443);
+            this.groupBox_Add_BMS.Size = new System.Drawing.Size(510, 456);
             this.groupBox_Add_BMS.TabIndex = 0;
             this.groupBox_Add_BMS.TabStop = false;
             this.groupBox_Add_BMS.Text = "Добавьте данные";
+            // 
+            // button_Help_BMS
+            // 
+            this.button_Help_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Help_BMS.Image = ((System.Drawing.Image)(resources.GetObject("button_Help_BMS.Image")));
+            this.button_Help_BMS.Location = new System.Drawing.Point(445, 19);
+            this.button_Help_BMS.Name = "button_Help_BMS";
+            this.button_Help_BMS.Size = new System.Drawing.Size(47, 43);
+            this.button_Help_BMS.TabIndex = 27;
+            this.toolTip_FormMain_BMS.SetToolTip(this.button_Help_BMS, "Как работает данная часть приложения ");
+            this.button_Help_BMS.UseVisualStyleBackColor = true;
+            this.button_Help_BMS.Click += new System.EventHandler(this.button_Help_BMS_Click);
+            // 
+            // button_Add_BMS
+            // 
+            this.button_Add_BMS.Location = new System.Drawing.Point(73, 44);
+            this.button_Add_BMS.Name = "button_Add_BMS";
+            this.button_Add_BMS.Size = new System.Drawing.Size(91, 52);
+            this.button_Add_BMS.TabIndex = 26;
+            this.button_Add_BMS.Text = "Добавить данные";
+            this.toolTip_FormMain_BMS.SetToolTip(this.button_Add_BMS, "С помощью этой кнопке можно добавить данные в таблицу из формы ниже");
+            this.button_Add_BMS.UseVisualStyleBackColor = true;
+            this.button_Add_BMS.Click += new System.EventHandler(this.button_Add_BMS_Click);
+            // 
+            // button_Save_BMS
+            // 
+            this.button_Save_BMS.Image = ((System.Drawing.Image)(resources.GetObject("button_Save_BMS.Image")));
+            this.button_Save_BMS.Location = new System.Drawing.Point(15, 44);
+            this.button_Save_BMS.Name = "button_Save_BMS";
+            this.button_Save_BMS.Size = new System.Drawing.Size(52, 52);
+            this.button_Save_BMS.TabIndex = 4;
+            this.toolTip_FormMain_BMS.SetToolTip(this.button_Save_BMS, "Эта кнопка отвечает за первое создание файла и за первое добавление данных\r\n");
+            this.button_Save_BMS.UseVisualStyleBackColor = true;
+            this.button_Save_BMS.Click += new System.EventHandler(this.button_Save_BMS_Click);
             // 
             // textBox_JobTitle_BMS
             // 
@@ -230,7 +239,6 @@ namespace Projectr.V11
             this.textBox_Salarry_BMS.Name = "textBox_Salarry_BMS";
             this.textBox_Salarry_BMS.Size = new System.Drawing.Size(157, 20);
             this.textBox_Salarry_BMS.TabIndex = 24;
-            this.textBox_Salarry_BMS.TextChanged += new System.EventHandler(this.textBox_Salarry_BMS_TextChanged);
             // 
             // label_LastName_BMS
             // 
@@ -313,31 +321,53 @@ namespace Projectr.V11
             this.label_DateOfBirth_BMS.TabIndex = 15;
             this.label_DateOfBirth_BMS.Text = "Введите дату рождения сотрудника (цифрами)";
             // 
-            // panel_Add_BMS
+            // button_ShowResult_BMS
             // 
-            this.panel_Add_BMS.Controls.Add(this.groupBox_Add_BMS);
-            this.panel_Add_BMS.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_Add_BMS.Location = new System.Drawing.Point(0, 68);
-            this.panel_Add_BMS.Name = "panel_Add_BMS";
-            this.panel_Add_BMS.Size = new System.Drawing.Size(510, 469);
-            this.panel_Add_BMS.TabIndex = 5;
+            this.button_ShowResult_BMS.Location = new System.Drawing.Point(18, 379);
+            this.button_ShowResult_BMS.Name = "button_ShowResult_BMS";
+            this.button_ShowResult_BMS.Size = new System.Drawing.Size(93, 52);
+            this.button_ShowResult_BMS.TabIndex = 25;
+            this.button_ShowResult_BMS.Text = "Показать добавленныен данные ";
+            this.toolTip_FormMain_BMS.SetToolTip(this.button_ShowResult_BMS, "Эта кнопка позволяет увидеть добавленные данные");
+            this.button_ShowResult_BMS.UseVisualStyleBackColor = true;
+            this.button_ShowResult_BMS.Click += new System.EventHandler(this.button_ShowResult_BMS_Click);
             // 
             // panel_ResultAdd_BMS
             // 
-            this.panel_ResultAdd_BMS.Controls.Add(this.dataGridView_Result_BMS);
+            this.panel_ResultAdd_BMS.Controls.Add(this.groupBox_Result_BMS);
+            this.panel_ResultAdd_BMS.Controls.Add(this.button_ShowResult_BMS);
             this.panel_ResultAdd_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_ResultAdd_BMS.Location = new System.Drawing.Point(510, 68);
+            this.panel_ResultAdd_BMS.Location = new System.Drawing.Point(510, 81);
             this.panel_ResultAdd_BMS.Name = "panel_ResultAdd_BMS";
-            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(529, 469);
-            this.panel_ResultAdd_BMS.TabIndex = 6;
+            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(529, 456);
+            this.panel_ResultAdd_BMS.TabIndex = 8;
+            // 
+            // groupBox_Result_BMS
+            // 
+            this.groupBox_Result_BMS.Controls.Add(this.dataGridView_Result_BMS);
+            this.groupBox_Result_BMS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox_Result_BMS.Location = new System.Drawing.Point(0, 0);
+            this.groupBox_Result_BMS.Name = "groupBox_Result_BMS";
+            this.groupBox_Result_BMS.Size = new System.Drawing.Size(529, 373);
+            this.groupBox_Result_BMS.TabIndex = 26;
+            this.groupBox_Result_BMS.TabStop = false;
+            this.groupBox_Result_BMS.Text = "Вывод данных";
             // 
             // dataGridView_Result_BMS
             // 
             this.dataGridView_Result_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Result_BMS.Location = new System.Drawing.Point(39, 0);
+            this.dataGridView_Result_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_Result_BMS.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_Result_BMS.Name = "dataGridView_Result_BMS";
-            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(529, 469);
+            this.dataGridView_Result_BMS.ReadOnly = true;
+            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(523, 354);
             this.dataGridView_Result_BMS.TabIndex = 0;
+            // 
+            // toolTip_FormMain_BMS
+            // 
+            this.toolTip_FormMain_BMS.IsBalloon = true;
+            this.toolTip_FormMain_BMS.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip_FormMain_BMS.ToolTipTitle = "Подсказка";
             // 
             // FormMain
             // 
@@ -347,38 +377,33 @@ namespace Projectr.V11
             this.Controls.Add(this.panel_ResultAdd_BMS);
             this.Controls.Add(this.panel_Add_BMS);
             this.Controls.Add(this.panel_Button_BMS);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.MinimumSize = new System.Drawing.Size(1055, 576);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Главное меню";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.panel_Button_BMS.ResumeLayout(false);
+            this.panel_Add_BMS.ResumeLayout(false);
             this.groupBox_Add_BMS.ResumeLayout(false);
             this.groupBox_Add_BMS.PerformLayout();
-            this.panel_Add_BMS.ResumeLayout(false);
             this.panel_ResultAdd_BMS.ResumeLayout(false);
+            this.groupBox_Result_BMS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result_BMS)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button_Sort_BMS;
-        private System.Windows.Forms.ToolTip toolTip_FormMain_BMS;
-        private System.Windows.Forms.Button button_Editing_BMS;
+
         private System.Windows.Forms.Panel panel_Button_BMS;
+        private System.Windows.Forms.Button button_Editing_BMS;
+        private System.Windows.Forms.Button button_Serch_BMS;
+        private System.Windows.Forms.Panel panel_Add_BMS;
         private System.Windows.Forms.GroupBox groupBox_Add_BMS;
-        private System.Windows.Forms.Label label_LastName_BMS;
-        private System.Windows.Forms.Label label_Name_BMS;
-        private System.Windows.Forms.Label label_DivisionName_BMS;
-        private System.Windows.Forms.Label label_SurName_BMS;
-        private System.Windows.Forms.Label label_Salarry_BMS;
-        private System.Windows.Forms.Label label_Address_BMS;
-        private System.Windows.Forms.Label label_JobTitle_BMS;
-        private System.Windows.Forms.Label label_PhoneNuber_BMS;
-        private System.Windows.Forms.Label label_DateOfBirth_BMS;
+        private System.Windows.Forms.Button button_Add_BMS;
+        private System.Windows.Forms.Button button_ShowResult_BMS;
+        private System.Windows.Forms.Button button_Save_BMS;
         private System.Windows.Forms.TextBox textBox_JobTitle_BMS;
         private System.Windows.Forms.TextBox textBox_Name_BMS;
         private System.Windows.Forms.TextBox textBox_PhoneNuber_BMS;
@@ -388,12 +413,21 @@ namespace Projectr.V11
         private System.Windows.Forms.TextBox textBox_Address_BMS;
         private System.Windows.Forms.TextBox textBox_DivisionName_BMS;
         private System.Windows.Forms.TextBox textBox_Salarry_BMS;
-        private System.Windows.Forms.Panel panel_Add_BMS;
+        private System.Windows.Forms.Label label_LastName_BMS;
+        private System.Windows.Forms.Label label_Name_BMS;
+        private System.Windows.Forms.Label label_DivisionName_BMS;
+        private System.Windows.Forms.Label label_SurName_BMS;
+        private System.Windows.Forms.Label label_Salarry_BMS;
+        private System.Windows.Forms.Label label_Address_BMS;
+        private System.Windows.Forms.Label label_JobTitle_BMS;
+        private System.Windows.Forms.Label label_PhoneNuber_BMS;
+        private System.Windows.Forms.Label label_DateOfBirth_BMS;
         private System.Windows.Forms.Panel panel_ResultAdd_BMS;
         private System.Windows.Forms.DataGridView dataGridView_Result_BMS;
-        private System.Windows.Forms.Button button_Save_BMS;
+        private System.Windows.Forms.ToolTip toolTip_FormMain_BMS;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_SaveFile_BMS;
-        private System.Windows.Forms.Button button_ShowResult_BMS;
-        private System.Windows.Forms.Button button_Add_BMS;
+        private System.Windows.Forms.GroupBox groupBox_Result_BMS;
+        private System.Windows.Forms.Button button_Help_BMS;
     }
 }
+
