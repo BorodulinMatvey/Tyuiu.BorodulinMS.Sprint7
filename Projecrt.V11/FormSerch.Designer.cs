@@ -51,6 +51,7 @@ namespace Projecrt.V11
             // 
             // dataGridView_Result_BMS
             // 
+            this.dataGridView_Result_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_Result_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Result_BMS.Location = new System.Drawing.Point(220, 19);
             this.dataGridView_Result_BMS.Name = "dataGridView_Result_BMS";
@@ -91,6 +92,7 @@ namespace Projecrt.V11
             // 
             // dataGridView_Find_BMS
             // 
+            this.dataGridView_Find_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_Find_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Find_BMS.Location = new System.Drawing.Point(220, 51);
             this.dataGridView_Find_BMS.Name = "dataGridView_Find_BMS";

@@ -30,9 +30,9 @@ namespace Projecrt.V11
         private void InitializeComponent()
         {
             this.panel_Rich_BMS = new System.Windows.Forms.Panel();
+            this.dataGridView_Editing_BMS = new System.Windows.Forms.DataGridView();
             this.button_LoadFileToEditing_BMS = new System.Windows.Forms.Button();
             this.button_SaveСhanges_BMS = new System.Windows.Forms.Button();
-            this.dataGridView_Editing_BMS = new System.Windows.Forms.DataGridView();
             this.panel_Rich_BMS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Editing_BMS)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +45,16 @@ namespace Projecrt.V11
             this.panel_Rich_BMS.Name = "panel_Rich_BMS";
             this.panel_Rich_BMS.Size = new System.Drawing.Size(779, 594);
             this.panel_Rich_BMS.TabIndex = 0;
+            // 
+            // dataGridView_Editing_BMS
+            // 
+            this.dataGridView_Editing_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Editing_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_Editing_BMS.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_Editing_BMS.Name = "dataGridView_Editing_BMS";
+            this.dataGridView_Editing_BMS.Size = new System.Drawing.Size(779, 594);
+            this.dataGridView_Editing_BMS.TabIndex = 0;
+            this.dataGridView_Editing_BMS.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Editing_BMS_CellContentClick);
             // 
             // button_LoadFileToEditing_BMS
             // 
@@ -66,16 +76,6 @@ namespace Projecrt.V11
             this.button_SaveСhanges_BMS.UseVisualStyleBackColor = true;
             this.button_SaveСhanges_BMS.Click += new System.EventHandler(this.button_SaveСhanges_BMS_Click);
             // 
-            // dataGridView_Editing_BMS
-            // 
-            this.dataGridView_Editing_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Editing_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_Editing_BMS.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_Editing_BMS.Name = "dataGridView_Editing_BMS";
-            this.dataGridView_Editing_BMS.Size = new System.Drawing.Size(779, 594);
-            this.dataGridView_Editing_BMS.TabIndex = 0;
-            this.dataGridView_Editing_BMS.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Editing_BMS_CellContentClick);
-            // 
             // FormEditing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -85,6 +85,7 @@ namespace Projecrt.V11
             this.Controls.Add(this.button_LoadFileToEditing_BMS);
             this.Controls.Add(this.panel_Rich_BMS);
             this.Name = "FormEditing";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormEditing";
             this.Load += new System.EventHandler(this.FormEditing_Load);
             this.panel_Rich_BMS.ResumeLayout(false);
