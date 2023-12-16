@@ -28,6 +28,7 @@ namespace Project.V11
         {
             try
             {
+
                 // Проверяем, что путь к файлу сохранен
                 if (string.IsNullOrEmpty(filePathForEditing))
                 {
