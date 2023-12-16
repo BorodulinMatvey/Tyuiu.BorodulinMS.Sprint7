@@ -78,8 +78,9 @@ namespace Project.V11
             this.panel_Button_BMS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Button_BMS.Location = new System.Drawing.Point(0, 0);
             this.panel_Button_BMS.Name = "panel_Button_BMS";
-            this.panel_Button_BMS.Size = new System.Drawing.Size(1039, 81);
+            this.panel_Button_BMS.Size = new System.Drawing.Size(1288, 81);
             this.panel_Button_BMS.TabIndex = 6;
+            this.panel_Button_BMS.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Button_BMS_Paint);
             // 
             // button_Editing_BMS
             // 
@@ -336,10 +337,10 @@ namespace Project.V11
             // 
             this.panel_ResultAdd_BMS.Controls.Add(this.groupBox_Result_BMS);
             this.panel_ResultAdd_BMS.Controls.Add(this.button_ShowResult_BMS);
-            this.panel_ResultAdd_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_ResultAdd_BMS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_ResultAdd_BMS.Location = new System.Drawing.Point(510, 81);
             this.panel_ResultAdd_BMS.Name = "panel_ResultAdd_BMS";
-            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(529, 456);
+            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(778, 434);
             this.panel_ResultAdd_BMS.TabIndex = 8;
             // 
             // groupBox_Result_BMS
@@ -348,7 +349,7 @@ namespace Project.V11
             this.groupBox_Result_BMS.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox_Result_BMS.Location = new System.Drawing.Point(0, 0);
             this.groupBox_Result_BMS.Name = "groupBox_Result_BMS";
-            this.groupBox_Result_BMS.Size = new System.Drawing.Size(529, 373);
+            this.groupBox_Result_BMS.Size = new System.Drawing.Size(778, 373);
             this.groupBox_Result_BMS.TabIndex = 26;
             this.groupBox_Result_BMS.TabStop = false;
             this.groupBox_Result_BMS.Text = "Вывод данных";
@@ -360,7 +361,7 @@ namespace Project.V11
             this.dataGridView_Result_BMS.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_Result_BMS.Name = "dataGridView_Result_BMS";
             this.dataGridView_Result_BMS.ReadOnly = true;
-            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(523, 354);
+            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(772, 354);
             this.dataGridView_Result_BMS.TabIndex = 0;
             // 
             // toolTip_FormMain_BMS
@@ -373,7 +374,7 @@ namespace Project.V11
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 537);
+            this.ClientSize = new System.Drawing.Size(1288, 537);
             this.Controls.Add(this.panel_ResultAdd_BMS);
             this.Controls.Add(this.panel_Add_BMS);
             this.Controls.Add(this.panel_Button_BMS);

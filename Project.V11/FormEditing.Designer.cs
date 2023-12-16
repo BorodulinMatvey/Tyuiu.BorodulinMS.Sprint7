@@ -51,11 +51,11 @@ namespace Project.V11
             // dataGridView_Editing_BMS
             // 
             this.dataGridView_Editing_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Editing_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_Editing_BMS.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_Editing_BMS.Location = new System.Drawing.Point(25, 3);
             this.dataGridView_Editing_BMS.Name = "dataGridView_Editing_BMS";
-            this.dataGridView_Editing_BMS.Size = new System.Drawing.Size(771, 594);
+            this.dataGridView_Editing_BMS.Size = new System.Drawing.Size(771, 396);
             this.dataGridView_Editing_BMS.TabIndex = 0;
+            this.dataGridView_Editing_BMS.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Editing_BMS_CellContentClick);
             // 
             // button_LoadFileToEditing_BMS
             // 
@@ -70,7 +70,7 @@ namespace Project.V11
             // 
             // button_SaveСhanges_BMS
             // 
-            this.button_SaveСhanges_BMS.Location = new System.Drawing.Point(126, 437);
+            this.button_SaveСhanges_BMS.Location = new System.Drawing.Point(55, 358);
             this.button_SaveСhanges_BMS.Name = "button_SaveСhanges_BMS";
             this.button_SaveСhanges_BMS.Size = new System.Drawing.Size(75, 23);
             this.button_SaveСhanges_BMS.TabIndex = 3;

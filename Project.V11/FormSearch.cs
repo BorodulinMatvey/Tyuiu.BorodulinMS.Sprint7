@@ -14,68 +14,87 @@ namespace Project.V11
     public partial class FormSearch : Form
     {
         private DataTable originalDataTable;
+        private string filePathFromFormMain;
         public FormSearch()
         {
             InitializeComponent();
-
+            
         }
-        
+        // Свойство для установки и получения пути файла
+        public string FilePathFromFormMain
+        {
+            get { return filePathFromFormMain; }
+            set { filePathFromFormMain = value; }
+        }
+
         private void button_Load_BMS_Click(object sender, EventArgs e)
         {
-            // Диалог для выбора файла
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+            OpenFileInFormSearch();
+        }
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+        private void OpenFileInFormSearch()
+        {
+            try
             {
-                // Очищаем существующие данные в dataGridView_Result_BMS
-                dataGridView_Result_BMS.DataSource = null;
+                // Проверяем, что путь к файлу установлен
+                if (!string.IsNullOrEmpty(filePathFromFormMain) && File.Exists(filePathFromFormMain))
+                {
+                    // Очищаем существующие данные в dataGridView_Result_BMS
+                    dataGridView_Result_BMS.DataSource = null;
 
-                // Загружаем данные из файла CSV
-                string filePath = openFileDialog.FileName;
-                originalDataTable = LoadDataFromCSV(filePath);
+                    // Загружаем данные из файла CSV
+                    originalDataTable = LoadDataFromCSV(filePathFromFormMain);
 
-                // Заполняем dataGridView_Result_BMS данными
-                dataGridView_Result_BMS.DataSource = originalDataTable;
+                    // Заполняем dataGridView_Result_BMS данными
+                    dataGridView_Result_BMS.DataSource = originalDataTable;
+
+                    MessageBox.Show("Файл успешно загружен");
+                }
+                else
+                {
+                    MessageBox.Show("Неверный путь к файлу.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}");
             }
         }
 
         private DataTable LoadDataFromCSV(string filePath)
         {
-            DataTable dataTable = new DataTable();
-
             try
             {
-                using (StreamReader sr = new StreamReader(filePath))
-                {
-                    // Читаем заголовки столбцов
-                    string[] headers = sr.ReadLine().Split(';');
+                DataTable dataTable = new DataTable();
 
-                    // Добавляем столбцы в DataTable
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string[] headers = reader.ReadLine().Split(';');
                     foreach (string header in headers)
                     {
                         dataTable.Columns.Add(header);
                     }
 
-                    // Заполняем DataTable данными
-                    while (!sr.EndOfStream)
+                    while (!reader.EndOfStream)
                     {
-                        string[] rows = sr.ReadLine().Split(';');
-                        DataRow dr = dataTable.NewRow();
+                        string[] rows = reader.ReadLine().Split(';');
+                        DataRow dataRow = dataTable.NewRow();
+
                         for (int i = 0; i < headers.Length; i++)
                         {
-                            dr[i] = rows[i];
+                            dataRow[i] = rows[i];
                         }
-                        dataTable.Rows.Add(dr);
+
+                        dataTable.Rows.Add(dataRow);
                     }
                 }
+
+                return dataTable;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при чтении файла: " + ex.Message);
+                throw new Exception($"Ошибка при загрузке данных из CSV: {ex.Message}");
             }
-
-            return dataTable;
         }
 
         private void button_Find_BMS_Click(object sender, EventArgs e)

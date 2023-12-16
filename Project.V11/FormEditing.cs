@@ -12,121 +12,157 @@ namespace Project.V11
 {
     public partial class FormEditing : Form
     {
-        public FormEditing()
+        private string filePathForEditing;
+
+        public FormEditing(string filePath)
         {
             InitializeComponent();
+            filePathForEditing = filePath;
         }
-        private DataTable originalDataTable;
-        private string openedFilePath;
-        private void button_LoadFileToEditing_BMS_Click(object sender, EventArgs e)
+       
+
+
+
         
+        private void button_LoadFileToEditing_BMS_Click(object sender, EventArgs e)
+        {
+            try
             {
-                // Диалог для выбора файла
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                // Проверяем, что путь к файлу сохранен
+                if (string.IsNullOrEmpty(filePathForEditing))
                 {
-                    // Сохраняем путь к открытому файлу
-                    openedFilePath = openFileDialog.FileName;
-
-                    // Очищаем существующие данные в dataGridView_Editing_BMS
-                    dataGridView_Editing_BMS.DataSource = null;
-
-                    // Загружаем данные из файла CSV
-                    originalDataTable = LoadDataFromCSV(openedFilePath);
-
-                    // Заполняем dataGridView_Editing_BMS данными
-                    dataGridView_Editing_BMS.DataSource = originalDataTable;
+                    MessageBox.Show("Пожалуйста, сначала сохраните данные.");
+                    return;
                 }
+
+                // Читаем данные из файла и заполняем DataTable
+                DataTable resultDataTable = ReadDataFromFile(filePathForEditing);
+
+                // Устанавливаем источник данных в dataGridView_Editing_BMS
+                dataGridView_Editing_BMS.DataSource = resultDataTable;
+
+                MessageBox.Show("Данные успешно загружены в режим редактирования.");
             }
-        private DataTable LoadDataFromCSV(string filePath)
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке данных для редактирования: {ex.Message}");
+            }
+        }
+
+
+        private DataTable ReadDataFromFile(string filePath)
         {
             DataTable dataTable = new DataTable();
 
-            using (StreamReader reader = new StreamReader(filePath, Encoding.Default))
+            try
             {
-                // Читаем данные из файла CSV
-                string fileContent = reader.ReadToEnd();
-                string[] lines = fileContent.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                // Читаем все строки из файла
+                string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
 
-                // Используем первую строку файла CSV для создания колонок DataTable
                 if (lines.Length > 0)
                 {
-                    string[] columns = lines[0].Split(';');
-                    foreach (string column in columns)
+                    // Разделяем заголовки столбцов
+                    string[] headers = lines[0].Split(';');
+                    foreach (string header in headers)
                     {
-                        dataTable.Columns.Add(column);
+                        dataTable.Columns.Add(header);
+                    }
+
+                    // Пропускаем первую строку (заголовки) и читаем остальные строки данных
+                    for (int i = 1; i < lines.Length; i++)
+                    {
+                        string[] fields = lines[i].Split(';');
+                        dataTable.Rows.Add(fields);
                     }
                 }
-
-                // Заполняем DataTable данными из файла CSV, начиная со второй строки
-                for (int i = 1; i < lines.Length; i++)
-                {
-                    string[] values = lines[i].Split(';');
-                    dataTable.Rows.Add(values);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при чтении данных из файла: {ex.Message}");
             }
 
             return dataTable;
         }
 
+
+
+
+
         private void button_SaveСhanges_BMS_Click(object sender, EventArgs e)
-        
+
+        {
+            try
             {
-                // Проверяем, был ли открыт файл
-                if (string.IsNullOrEmpty(openedFilePath))
+                // Проверяем, что путь к файлу сохранен
+                if (string.IsNullOrEmpty(filePathForEditing))
                 {
-                    MessageBox.Show("Выберите файл для сохранения.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Пожалуйста, сначала сохраните данные.");
                     return;
                 }
 
-                // Создаем StreamWriter для записи в тот же файл в формате UTF-8
-                using (StreamWriter writer = new StreamWriter(openedFilePath, false, Encoding.UTF8))
-                {
-                    // Записываем заголовок с именами колонок
-                    foreach (DataColumn column in originalDataTable.Columns)
-                    {
-                        writer.Write(column.ColumnName);
-                        writer.Write(";");
-                    }
-                    writer.WriteLine();
+                // Получаем данные из dataGridView_Editing_BMS и формируем строку для сохранения
+                StringBuilder dataToSave = new StringBuilder();
 
-                    // Записываем данные из исходного DataTable
-                    foreach (DataRow row in originalDataTable.Rows)
+                // Заголовки столбцов
+                for (int i = 0; i < dataGridView_Editing_BMS.Columns.Count; i++)
+                {
+                    dataToSave.Append(dataGridView_Editing_BMS.Columns[i].HeaderText);
+                    if (i < dataGridView_Editing_BMS.Columns.Count - 1)
                     {
-                        foreach (var value in row.ItemArray)
-                        {
-                            writer.Write(value);
-                            writer.Write(";");
-                        }
-                        writer.WriteLine();
+                        dataToSave.Append(";");
                     }
                 }
+                dataToSave.AppendLine();
 
-                MessageBox.Show("Изменения сохранены успешно.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            private void UpdateOriginalDataTable()
-            {
-                // Очищаем исходный DataTable
-                originalDataTable.Clear();
-
-                // Заполняем его данными из dataGridView_Editing_BMS
+                // Данные строк
                 foreach (DataGridViewRow row in dataGridView_Editing_BMS.Rows)
                 {
-                    DataRow newRow = originalDataTable.NewRow();
-
-                    foreach (DataGridViewCell cell in row.Cells)
+                    // Проверяем, что строка не является новой и не является пустой
+                    if (!row.IsNewRow && !IsRowEmpty(row))
                     {
-                        newRow[cell.ColumnIndex] = cell.Value;
+                        for (int i = 0; i < row.Cells.Count; i++)
+                        {
+                            dataToSave.Append(row.Cells[i].Value);
+                            if (i < row.Cells.Count - 1)
+                            {
+                                dataToSave.Append(";");
+                            }
+                        }
+                        dataToSave.AppendLine();
                     }
+                }
 
-                    originalDataTable.Rows.Add(newRow);
+                // Сохраняем данные в файл
+                File.WriteAllText(filePathForEditing, dataToSave.ToString(), Encoding.UTF8);
+
+                MessageBox.Show("Изменения успешно сохранены в файл.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении изменений: {ex.Message}");
+            }
+        }
+        private bool IsRowEmpty(DataGridViewRow row)
+        {
+            foreach (DataGridViewCell cell in row.Cells)
+            {
+                if (cell.Value != null && !string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                {
+                    return false;
                 }
             }
+            return true;
+        }
+
+
+
 
         private void FormEditing_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void dataGridView_Editing_BMS_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
