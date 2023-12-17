@@ -24,12 +24,7 @@ namespace Project.V11
         {
             InitializeComponent();
         }
-        private void OpenFormSearch()
-        {
-            FormSearch formSearch = new FormSearch();
-            formSearch.FilePathFromFormMain = savedFilePath;
-            formSearch.Show();
-        }
+
         private void button_Save_BMS_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -80,7 +75,7 @@ namespace Project.V11
 
                         MessageBox.Show("Данные успешно сохранены!");
 
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -145,6 +140,7 @@ namespace Project.V11
             }
             ClearTextBoxes();
         }
+
         private void ClearTextBoxes()
         {
             // Очищаем все TextBox'ы
@@ -202,19 +198,6 @@ namespace Project.V11
             }
 
         }
-        
-
-
-        private void button_Serch_BMS_Click(object sender, EventArgs e)
-        {
-            OpenFormSearch();
-        }
-
-        private void button_Editing_BMS_Click(object sender, EventArgs e)
-        {
-            FormEditing formEditing = new FormEditing(savedFilePath);
-            formEditing.ShowDialog();
-        }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -226,8 +209,6 @@ namespace Project.V11
             FormHelp formHelp = new FormHelp();
             formHelp.ShowDialog();
         }
-
-        
 
         private void button_ShowResuktEditing_BMS_Click(object sender, EventArgs e)
         {
@@ -290,6 +271,189 @@ namespace Project.V11
         {
 
         }
+
+        private void button_Find_BMS_Click(object sender, EventArgs e)
+        {
+            {
+                if (!string.IsNullOrEmpty(savedFilePath))
+                {
+                    string searchText = textBox_Find_BMS.Text;
+
+                    DataTable searchResult = PerformSearchInFile(searchText, savedFilePath);
+
+                    dataGridView_Result_BMS.DataSource = searchResult;
+                }
+                else
+                {
+                    MessageBox.Show("Выберите файл перед выполнением поиска.");
+                }
+            }
+
+
+        }
+
+        private DataTable PerformSearchInFile(string searchText, string filePath)
+        {
+            DataTable originalDataTable = ReadDatafromFile(filePath);
+
+            if (originalDataTable != null)
+            {
+                // Добавим временный столбец для хранения значения, показывающего, содержится ли искомый текст в строке
+                originalDataTable.Columns.Add("__IsSearchResult", typeof(bool));
+
+                // Выполняем поиск в DataTable
+                foreach (DataRow row in originalDataTable.Rows)
+                {
+                    bool found = false;
+
+                    // Перебираем столбцы оригинальной строки
+                    foreach (DataColumn column in originalDataTable.Columns)
+                    {
+                        // Получаем значение из оригинальной строки
+                        string cellValue = row[column].ToString();
+
+                        // Если значение содержит искомую подстроку, устанавливаем флаг found в true
+                        if (cellValue.Contains(searchText))
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    // Устанавливаем значение временного столбца
+                    row["__IsSearchResult"] = found;
+                }
+
+                // Сортируем по временному столбцу
+                originalDataTable.DefaultView.Sort = "__IsSearchResult DESC";
+
+                // Создаем новую таблицу с теми же столбцами, что и у оригинальной таблицы
+                DataTable searchResult = originalDataTable.Clone();
+
+                // Копируем строки из отсортированного представления
+                foreach (DataRowView rowView in originalDataTable.DefaultView)
+                {
+                    DataRow row = searchResult.NewRow();
+                    row.ItemArray = rowView.Row.ItemArray;
+                    searchResult.Rows.Add(row);
+                }
+
+                // Удаляем временный столбец
+                searchResult.Columns.Remove("__IsSearchResult");
+
+                return searchResult;
+            }
+            else
+            {
+                MessageBox.Show("Не удалось прочитать данные из файла.");
+                return null;
+            }
+        }
+
+        private DataTable ReadDatafromFile(string filePath)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string[] headers = reader.ReadLine().Split(';');
+
+                    foreach (string header in headers)
+                    {
+                        dataTable.Columns.Add(header.Trim());
+                    }
+
+                    while (!reader.EndOfStream)
+                    {
+                        string[] values = reader.ReadLine().Split(';');
+                        DataRow row = dataTable.NewRow();
+
+                        for (int i = 0; i < values.Length; i++)
+                        {
+                            row[i] = values[i].Trim();
+                        }
+
+                        dataTable.Rows.Add(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при чтении данных из файла: {ex.Message}");
+                return null;
+            }
+
+            return dataTable;
+        }
+
+        private void button_SaveEditing_BMS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Проверяем, что путь к файлу сохранения установлен
+                if (string.IsNullOrEmpty(savedFilePath))
+                {
+                    MessageBox.Show("Пожалуйста, укажите путь для сохранения данных.");
+                    return;
+                }
+
+                // Получаем данные из dataGridView_Result_BMS и формируем строку для сохранения
+                StringBuilder dataToSave = new StringBuilder();
+
+                // Заголовки столбцов
+                for (int i = 0; i < dataGridView_Result_BMS.Columns.Count; i++)
+                {
+                    dataToSave.Append(dataGridView_Result_BMS.Columns[i].HeaderText);
+                    if (i < dataGridView_Result_BMS.Columns.Count - 1)
+                    {
+                        dataToSave.Append(";");
+                    }
+                }
+                dataToSave.AppendLine();
+
+                // Синхронизируем изменения из DataGridView с исходным источником данных (DataTable)
+                dataGridView_Result_BMS.EndEdit();
+                (dataGridView_Result_BMS.DataSource as DataTable)?.AcceptChanges();
+
+                // Данные строк
+                foreach (DataRowView rowView in (dataGridView_Result_BMS.DataSource as DataTable)?.DefaultView)
+                {
+                    DataRow row = rowView.Row;
+                    for (int i = 0; i < row.ItemArray.Length; i++)
+                    {
+                        dataToSave.Append(row[i]);
+                        if (i < row.ItemArray.Length - 1)
+                        {
+                            dataToSave.Append(";");
+                        }
+                    }
+                    dataToSave.AppendLine();
+                }
+
+                // Сохраняем данные в указанный файл
+                File.WriteAllText(savedFilePath, dataToSave.ToString(), Encoding.UTF8);
+
+                MessageBox.Show("Данные успешно сохранены в файл.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
+            }
+        }
+        private bool IsRowEmpty(DataGridViewRow row)
+        {
+            foreach (DataGridViewCell cell in row.Cells)
+            {
+                if (cell.Value != null && cell.Value.ToString() != string.Empty)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
-    
 }
+    
+
