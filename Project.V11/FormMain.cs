@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
+using Project.V11.Lib;
+
 
 namespace Project.V11
 {
@@ -23,7 +26,9 @@ namespace Project.V11
         public FormMain()
         {
             InitializeComponent();
+            
         }
+        DataService ds = new DataService();
 
         private void button_Save_BMS_Click(object sender, EventArgs e)
         {
@@ -54,6 +59,13 @@ namespace Project.V11
                 }
                 else
                 {
+                    // Проверяем, начинается ли номер телефона с '8'
+                    if (!PhoneNumber.StartsWith("8"))
+                    {
+                        MessageBox.Show("Номер телефона должен начинаться с '8'.");
+                        return;
+                    }
+
                     // Формируем строку для сохранения
                     string dataToSave = $"{LastName};{Name};{SurName};{Address};{PhoneNumber};{Salary};{DivisionName};{DateOfBirth};{JobTitle}";
 
@@ -74,8 +86,6 @@ namespace Project.V11
                         }
 
                         MessageBox.Show("Данные успешно сохранены!");
-
-
                     }
                     catch (Exception ex)
                     {
@@ -88,56 +98,57 @@ namespace Project.V11
 
         private void button_Add_BMS_Click(object sender, EventArgs e)
         {
+            // Получаем данные из TextBox'ов
+            string LastName = textBox_LastName_BMS.Text;
+            string Name = textBox_Name_BMS.Text;
+            string SurName = textBox_SurName_BMS.Text;
+            string Address = textBox_Address_BMS.Text;
+            string PhoneNumber = textBox_PhoneNuber_BMS.Text;
+            string Salary = textBox_Salarry_BMS.Text;
+            string DivisionName = textBox_DivisionName_BMS.Text;
+            string DateOfBirth = textBox_DateOfBirth_BMS.Text;
+            string JobTitle = textBox_JobTitle_BMS.Text;
+
+            // Проверяем, что все TextBox'ы содержат текст
+            if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(SurName) ||
+                string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(PhoneNumber) || string.IsNullOrWhiteSpace(Salary) ||
+                string.IsNullOrWhiteSpace(DivisionName) || string.IsNullOrWhiteSpace(DateOfBirth) || string.IsNullOrWhiteSpace(JobTitle))
             {
+                MessageBox.Show("Пожалуйста, заполните все поля перед сохранением данных.");
+            }
+            else if (!PhoneNumber.StartsWith("8"))
+            {
+                MessageBox.Show("Номер телефона должен начинаться с '8'.");
+            }
+            else
+            {
+                // Формируем строку для сохранения
+                string dataToSave = $"{LastName};{Name};{SurName};{Address};{PhoneNumber};{Salary};{DivisionName};{DateOfBirth};{JobTitle}";
+
+                try
                 {
-                    // Получаем данные из TextBox'ов
-                    string LastName = textBox_LastName_BMS.Text;
-                    string Name = textBox_Name_BMS.Text;
-                    string SurName = textBox_SurName_BMS.Text;
-                    string Address = textBox_Address_BMS.Text;
-                    string PhoneNumber = textBox_PhoneNuber_BMS.Text;
-                    string Salary = textBox_Salarry_BMS.Text;
-                    string DivisionName = textBox_DivisionName_BMS.Text;
-                    string DateOfBirth = textBox_DateOfBirth_BMS.Text;
-                    string JobTitle = textBox_JobTitle_BMS.Text;
-
-                    // Проверяем, что все TextBox'ы содержат текст
-                    if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(SurName) ||
-                        string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(PhoneNumber) || string.IsNullOrWhiteSpace(Salary) ||
-                        string.IsNullOrWhiteSpace(DivisionName) || string.IsNullOrWhiteSpace(DateOfBirth) || string.IsNullOrWhiteSpace(JobTitle))
+                    // Открываем файл для записи с кодировкой UTF-8
+                    using (StreamWriter sw = new StreamWriter(savedFilePath, true, Encoding.UTF8))
                     {
-                        MessageBox.Show("Пожалуйста, заполните все поля перед сохранением данных.");
-                    }
-                    else
-                    {
-                        // Формируем строку для сохранения
-                        string dataToSave = $"{LastName};{Name};{SurName};{Address};{PhoneNumber};{Salary};{DivisionName};{DateOfBirth};{JobTitle}";
-
-                        try
+                        // Если файл пуст, добавляем заголовки столбцов
+                        if (new FileInfo(savedFilePath).Length == 0)
                         {
-                            // Открываем файл для записи с кодировкой UTF-8
-                            using (StreamWriter sw = new StreamWriter(savedFilePath, true, Encoding.UTF8))
-                            {
-                                // Если файл пуст, добавляем заголовки столбцов
-                                if (new FileInfo(savedFilePath).Length == 0)
-                                {
-                                    string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Оклад;Наименование подразделения;Дата рождения;Должность";
-                                    sw.WriteLine(header);
-                                }
-
-                                // Записываем данные в новую строку
-                                sw.WriteLine(dataToSave);
-                            }
-
-                            MessageBox.Show("Данные успешно сохранены!");
+                            string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Оклад;Наименование подразделения;Дата рождения;Должность";
+                            sw.WriteLine(header);
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
-                        }
+
+                        // Записываем данные в новую строку
+                        sw.WriteLine(dataToSave);
                     }
+
+                    MessageBox.Show("Данные успешно сохранены!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
                 }
             }
+
             ClearTextBoxes();
         }
 
@@ -164,6 +175,12 @@ namespace Project.V11
 
             try
             {
+                // Используем System.IO для подсчета строк в файле
+                int lineCount = DataService.CountCsvLines(savedFilePath);
+
+                // Выводим результат в textBox_Employees_BMS
+                textBox_Employees_BMS.Text = lineCount.ToString();
+
                 // Открываем файл для чтения
                 using (StreamReader sr = new StreamReader(savedFilePath, Encoding.UTF8))
                 {
@@ -187,7 +204,6 @@ namespace Project.V11
                         dataTable.Rows.Add(rows);
                     }
 
-
                     // Заполняем DataGridView данными из DataTable
                     dataGridView_Result_BMS.DataSource = dataTable;
                 }
@@ -196,7 +212,6 @@ namespace Project.V11
             {
                 MessageBox.Show($"Ошибка при загрузке данных из файла: {ex.Message}");
             }
-
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -452,6 +467,82 @@ namespace Project.V11
                 }
             }
             return true;
+        }
+
+        private void textBox_PhoneNuber_BMS_TextChanged(object sender, EventArgs e)
+        {
+            // Получаем текущий текст из текстового поля
+            string currentText = textBox_PhoneNuber_BMS.Text;
+
+            // Проверяем, содержит ли текст буквы
+            if (currentText.Any(char.IsLetter))
+            {
+                // Если есть буквы, выдаем ошибку и очищаем поле
+                MessageBox.Show("Пожалуйста, вводите только цифры.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_PhoneNuber_BMS.Clear();
+                return;
+            }
+
+            // Создаем новую строку, оставляя только цифры и управляющие символы
+            string filteredText = new string(currentText.Where(c => char.IsDigit(c) || char.IsControl(c)).ToArray());
+
+            // Если текст изменился, обновляем текстовое поле
+            if (currentText != filteredText)
+            {
+                textBox_PhoneNuber_BMS.Text = filteredText;
+
+                // Устанавливаем курсор в конец текста
+                textBox_PhoneNuber_BMS.SelectionStart = filteredText.Length;
+            }
+        }
+
+        private void textBox_Salarry_BMS_TextChanged(object sender, EventArgs e)
+        {
+            {
+                // Получаем текущий текст из текстового поля
+                string currentText = textBox_Salarry_BMS.Text;
+
+                // Проверяем, содержит ли текст буквы
+                if (currentText.Any(char.IsLetter))
+                {
+                    // Если есть буквы, выдаем ошибку и очищаем поле
+                    MessageBox.Show("Пожалуйста, вводите только цифры.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox_Salarry_BMS.Clear();
+                    return;
+                }
+
+                // Создаем новую строку, оставляя только цифры и управляющие символы
+                string filteredText = new string(currentText.Where(c => char.IsDigit(c) || char.IsControl(c)).ToArray());
+
+                // Если текст изменился, обновляем текстовое поле
+                if (currentText != filteredText)
+                {
+                    textBox_Salarry_BMS.Text = filteredText;
+
+                    // Устанавливаем курсор в конец текста
+                    textBox_Salarry_BMS.SelectionStart = filteredText.Length;
+                }
+            }
+        }
+
+        private void textBox_DateOfBirth_BMS_TextChanged(object sender, EventArgs e)
+        {
+            // Получаем текущий текст из текстового поля
+            string currentText = textBox_DateOfBirth_BMS.Text;
+
+            // Проверяем, соответствует ли текст формату "dd.MM.yyyy"
+            if (currentText.Length == 10 && !IsValidDateFormat(currentText))
+            {
+                // Если формат неверный, выдаем ошибку и очищаем поле
+                MessageBox.Show("Пожалуйста, введите дату в формате dd.MM.yyyy.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_DateOfBirth_BMS.Clear();
+                return;
+            }
+        }
+        private bool IsValidDateFormat(string dateText)
+        {
+            DateTime result;
+            return DateTime.TryParseExact(dateText, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out result);
         }
     }
 }

@@ -31,7 +31,9 @@ namespace Project.V11
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.panel_Button_BMS = new System.Windows.Forms.Panel();
+            this.panel_Search_BMS = new System.Windows.Forms.Panel();
+            this.textBox_Find_BMS = new System.Windows.Forms.TextBox();
+            this.button_Find_BMS = new System.Windows.Forms.Button();
             this.panel_Add_BMS = new System.Windows.Forms.Panel();
             this.groupBox_Add_BMS = new System.Windows.Forms.GroupBox();
             this.button_Help_BMS = new System.Windows.Forms.Button();
@@ -57,14 +59,14 @@ namespace Project.V11
             this.label_DateOfBirth_BMS = new System.Windows.Forms.Label();
             this.button_ShowResult_BMS = new System.Windows.Forms.Button();
             this.panel_ResultAdd_BMS = new System.Windows.Forms.Panel();
+            this.button_SaveEditing_BMS = new System.Windows.Forms.Button();
             this.groupBox_Result_BMS = new System.Windows.Forms.GroupBox();
             this.dataGridView_Result_BMS = new System.Windows.Forms.DataGridView();
             this.toolTip_FormMain_BMS = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog_SaveFile_BMS = new System.Windows.Forms.SaveFileDialog();
-            this.button_Find_BMS = new System.Windows.Forms.Button();
-            this.textBox_Find_BMS = new System.Windows.Forms.TextBox();
-            this.button_SaveEditing_BMS = new System.Windows.Forms.Button();
-            this.panel_Button_BMS.SuspendLayout();
+            this.textBox_Employees_BMS = new System.Windows.Forms.TextBox();
+            this.label_Employees_BMS = new System.Windows.Forms.Label();
+            this.panel_Search_BMS.SuspendLayout();
             this.panel_Add_BMS.SuspendLayout();
             this.groupBox_Add_BMS.SuspendLayout();
             this.panel_ResultAdd_BMS.SuspendLayout();
@@ -72,24 +74,43 @@ namespace Project.V11
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result_BMS)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel_Button_BMS
+            // panel_Search_BMS
             // 
-            this.panel_Button_BMS.Controls.Add(this.textBox_Find_BMS);
-            this.panel_Button_BMS.Controls.Add(this.button_Find_BMS);
-            this.panel_Button_BMS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Button_BMS.Location = new System.Drawing.Point(0, 0);
-            this.panel_Button_BMS.Name = "panel_Button_BMS";
-            this.panel_Button_BMS.Size = new System.Drawing.Size(1288, 81);
-            this.panel_Button_BMS.TabIndex = 6;
-            this.panel_Button_BMS.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Button_BMS_Paint);
+            this.panel_Search_BMS.Controls.Add(this.textBox_Find_BMS);
+            this.panel_Search_BMS.Controls.Add(this.button_Find_BMS);
+            this.panel_Search_BMS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_Search_BMS.Location = new System.Drawing.Point(0, 0);
+            this.panel_Search_BMS.Name = "panel_Search_BMS";
+            this.panel_Search_BMS.Size = new System.Drawing.Size(1303, 53);
+            this.panel_Search_BMS.TabIndex = 6;
+            this.panel_Search_BMS.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Button_BMS_Paint);
+            // 
+            // textBox_Find_BMS
+            // 
+            this.textBox_Find_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_Find_BMS.Location = new System.Drawing.Point(1154, 21);
+            this.textBox_Find_BMS.Name = "textBox_Find_BMS";
+            this.textBox_Find_BMS.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Find_BMS.TabIndex = 28;
+            // 
+            // button_Find_BMS
+            // 
+            this.button_Find_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Find_BMS.Image = ((System.Drawing.Image)(resources.GetObject("button_Find_BMS.Image")));
+            this.button_Find_BMS.Location = new System.Drawing.Point(1260, 16);
+            this.button_Find_BMS.Name = "button_Find_BMS";
+            this.button_Find_BMS.Size = new System.Drawing.Size(31, 29);
+            this.button_Find_BMS.TabIndex = 27;
+            this.button_Find_BMS.UseVisualStyleBackColor = true;
+            this.button_Find_BMS.Click += new System.EventHandler(this.button_Find_BMS_Click);
             // 
             // panel_Add_BMS
             // 
             this.panel_Add_BMS.Controls.Add(this.groupBox_Add_BMS);
             this.panel_Add_BMS.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_Add_BMS.Location = new System.Drawing.Point(0, 81);
+            this.panel_Add_BMS.Location = new System.Drawing.Point(0, 53);
             this.panel_Add_BMS.Name = "panel_Add_BMS";
-            this.panel_Add_BMS.Size = new System.Drawing.Size(510, 456);
+            this.panel_Add_BMS.Size = new System.Drawing.Size(510, 532);
             this.panel_Add_BMS.TabIndex = 7;
             // 
             // groupBox_Add_BMS
@@ -118,7 +139,7 @@ namespace Project.V11
             this.groupBox_Add_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_Add_BMS.Location = new System.Drawing.Point(0, 0);
             this.groupBox_Add_BMS.Name = "groupBox_Add_BMS";
-            this.groupBox_Add_BMS.Size = new System.Drawing.Size(510, 456);
+            this.groupBox_Add_BMS.Size = new System.Drawing.Size(510, 532);
             this.groupBox_Add_BMS.TabIndex = 0;
             this.groupBox_Add_BMS.TabStop = false;
             this.groupBox_Add_BMS.Text = "Добавьте данные";
@@ -177,6 +198,7 @@ namespace Project.V11
             this.textBox_PhoneNuber_BMS.Name = "textBox_PhoneNuber_BMS";
             this.textBox_PhoneNuber_BMS.Size = new System.Drawing.Size(157, 20);
             this.textBox_PhoneNuber_BMS.TabIndex = 18;
+            this.textBox_PhoneNuber_BMS.TextChanged += new System.EventHandler(this.textBox_PhoneNuber_BMS_TextChanged);
             // 
             // textBox_SurName_BMS
             // 
@@ -191,6 +213,7 @@ namespace Project.V11
             this.textBox_DateOfBirth_BMS.Name = "textBox_DateOfBirth_BMS";
             this.textBox_DateOfBirth_BMS.Size = new System.Drawing.Size(157, 20);
             this.textBox_DateOfBirth_BMS.TabIndex = 20;
+            this.textBox_DateOfBirth_BMS.TextChanged += new System.EventHandler(this.textBox_DateOfBirth_BMS_TextChanged);
             // 
             // textBox_LastName_BMS
             // 
@@ -219,6 +242,7 @@ namespace Project.V11
             this.textBox_Salarry_BMS.Name = "textBox_Salarry_BMS";
             this.textBox_Salarry_BMS.Size = new System.Drawing.Size(157, 20);
             this.textBox_Salarry_BMS.TabIndex = 24;
+            this.textBox_Salarry_BMS.TextChanged += new System.EventHandler(this.textBox_Salarry_BMS_TextChanged);
             // 
             // label_LastName_BMS
             // 
@@ -314,59 +338,16 @@ namespace Project.V11
             // 
             // panel_ResultAdd_BMS
             // 
+            this.panel_ResultAdd_BMS.Controls.Add(this.label_Employees_BMS);
+            this.panel_ResultAdd_BMS.Controls.Add(this.textBox_Employees_BMS);
             this.panel_ResultAdd_BMS.Controls.Add(this.button_SaveEditing_BMS);
             this.panel_ResultAdd_BMS.Controls.Add(this.groupBox_Result_BMS);
             this.panel_ResultAdd_BMS.Controls.Add(this.button_ShowResult_BMS);
             this.panel_ResultAdd_BMS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_ResultAdd_BMS.Location = new System.Drawing.Point(510, 81);
+            this.panel_ResultAdd_BMS.Location = new System.Drawing.Point(510, 53);
             this.panel_ResultAdd_BMS.Name = "panel_ResultAdd_BMS";
-            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(778, 434);
+            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(793, 434);
             this.panel_ResultAdd_BMS.TabIndex = 8;
-            // 
-            // groupBox_Result_BMS
-            // 
-            this.groupBox_Result_BMS.Controls.Add(this.dataGridView_Result_BMS);
-            this.groupBox_Result_BMS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox_Result_BMS.Location = new System.Drawing.Point(0, 0);
-            this.groupBox_Result_BMS.Name = "groupBox_Result_BMS";
-            this.groupBox_Result_BMS.Size = new System.Drawing.Size(778, 373);
-            this.groupBox_Result_BMS.TabIndex = 26;
-            this.groupBox_Result_BMS.TabStop = false;
-            this.groupBox_Result_BMS.Text = "Вывод данных";
-            // 
-            // dataGridView_Result_BMS
-            // 
-            this.dataGridView_Result_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Result_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_Result_BMS.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView_Result_BMS.Name = "dataGridView_Result_BMS";
-            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(772, 354);
-            this.dataGridView_Result_BMS.TabIndex = 0;
-            // 
-            // toolTip_FormMain_BMS
-            // 
-            this.toolTip_FormMain_BMS.IsBalloon = true;
-            this.toolTip_FormMain_BMS.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip_FormMain_BMS.ToolTipTitle = "Подсказка";
-            // 
-            // button_Find_BMS
-            // 
-            this.button_Find_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Find_BMS.Image = ((System.Drawing.Image)(resources.GetObject("button_Find_BMS.Image")));
-            this.button_Find_BMS.Location = new System.Drawing.Point(1245, 16);
-            this.button_Find_BMS.Name = "button_Find_BMS";
-            this.button_Find_BMS.Size = new System.Drawing.Size(31, 29);
-            this.button_Find_BMS.TabIndex = 27;
-            this.button_Find_BMS.UseVisualStyleBackColor = true;
-            this.button_Find_BMS.Click += new System.EventHandler(this.button_Find_BMS_Click);
-            // 
-            // textBox_Find_BMS
-            // 
-            this.textBox_Find_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Find_BMS.Location = new System.Drawing.Point(1139, 21);
-            this.textBox_Find_BMS.Name = "textBox_Find_BMS";
-            this.textBox_Find_BMS.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Find_BMS.TabIndex = 28;
             // 
             // button_SaveEditing_BMS
             // 
@@ -378,26 +359,74 @@ namespace Project.V11
             this.button_SaveEditing_BMS.UseVisualStyleBackColor = true;
             this.button_SaveEditing_BMS.Click += new System.EventHandler(this.button_SaveEditing_BMS_Click);
             // 
+            // groupBox_Result_BMS
+            // 
+            this.groupBox_Result_BMS.Controls.Add(this.dataGridView_Result_BMS);
+            this.groupBox_Result_BMS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox_Result_BMS.Location = new System.Drawing.Point(0, 0);
+            this.groupBox_Result_BMS.Name = "groupBox_Result_BMS";
+            this.groupBox_Result_BMS.Size = new System.Drawing.Size(793, 373);
+            this.groupBox_Result_BMS.TabIndex = 26;
+            this.groupBox_Result_BMS.TabStop = false;
+            this.groupBox_Result_BMS.Text = "Вывод данных";
+            // 
+            // dataGridView_Result_BMS
+            // 
+            this.dataGridView_Result_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Result_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Result_BMS.ColumnHeadersVisible = false;
+            this.dataGridView_Result_BMS.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView_Result_BMS.Name = "dataGridView_Result_BMS";
+            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(772, 354);
+            this.dataGridView_Result_BMS.TabIndex = 0;
+            // 
+            // toolTip_FormMain_BMS
+            // 
+            this.toolTip_FormMain_BMS.IsBalloon = true;
+            this.toolTip_FormMain_BMS.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip_FormMain_BMS.ToolTipTitle = "Подсказка";
+            // 
+            // textBox_Employees_BMS
+            // 
+            this.textBox_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_Employees_BMS.Location = new System.Drawing.Point(737, 376);
+            this.textBox_Employees_BMS.Name = "textBox_Employees_BMS";
+            this.textBox_Employees_BMS.Size = new System.Drawing.Size(44, 20);
+            this.textBox_Employees_BMS.TabIndex = 28;
+            // 
+            // label_Employees_BMS
+            // 
+            this.label_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Employees_BMS.AutoSize = true;
+            this.label_Employees_BMS.Location = new System.Drawing.Point(587, 379);
+            this.label_Employees_BMS.Name = "label_Employees_BMS";
+            this.label_Employees_BMS.Size = new System.Drawing.Size(144, 13);
+            this.label_Employees_BMS.TabIndex = 29;
+            this.label_Employees_BMS.Text = "Общее число сотрудников:";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1288, 537);
+            this.ClientSize = new System.Drawing.Size(1303, 585);
             this.Controls.Add(this.panel_ResultAdd_BMS);
             this.Controls.Add(this.panel_Add_BMS);
-            this.Controls.Add(this.panel_Button_BMS);
+            this.Controls.Add(this.panel_Search_BMS);
             this.MinimumSize = new System.Drawing.Size(1055, 576);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Главное меню";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.panel_Button_BMS.ResumeLayout(false);
-            this.panel_Button_BMS.PerformLayout();
+            this.panel_Search_BMS.ResumeLayout(false);
+            this.panel_Search_BMS.PerformLayout();
             this.panel_Add_BMS.ResumeLayout(false);
             this.groupBox_Add_BMS.ResumeLayout(false);
             this.groupBox_Add_BMS.PerformLayout();
             this.panel_ResultAdd_BMS.ResumeLayout(false);
+            this.panel_ResultAdd_BMS.PerformLayout();
             this.groupBox_Result_BMS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result_BMS)).EndInit();
             this.ResumeLayout(false);
@@ -406,7 +435,7 @@ namespace Project.V11
 
         #endregion
 
-        private System.Windows.Forms.Panel panel_Button_BMS;
+        private System.Windows.Forms.Panel panel_Search_BMS;
         private System.Windows.Forms.Panel panel_Add_BMS;
         private System.Windows.Forms.GroupBox groupBox_Add_BMS;
         private System.Windows.Forms.Button button_Add_BMS;
@@ -439,6 +468,8 @@ namespace Project.V11
         private System.Windows.Forms.Button button_Find_BMS;
         private System.Windows.Forms.TextBox textBox_Find_BMS;
         private System.Windows.Forms.Button button_SaveEditing_BMS;
+        private System.Windows.Forms.TextBox textBox_Employees_BMS;
+        private System.Windows.Forms.Label label_Employees_BMS;
     }
 }
 
