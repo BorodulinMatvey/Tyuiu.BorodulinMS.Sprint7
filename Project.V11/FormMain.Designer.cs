@@ -59,13 +59,13 @@ namespace Project.V11
             this.label_DateOfBirth_BMS = new System.Windows.Forms.Label();
             this.button_ShowResult_BMS = new System.Windows.Forms.Button();
             this.panel_ResultAdd_BMS = new System.Windows.Forms.Panel();
+            this.label_Employees_BMS = new System.Windows.Forms.Label();
+            this.textBox_Employees_BMS = new System.Windows.Forms.TextBox();
             this.button_SaveEditing_BMS = new System.Windows.Forms.Button();
             this.groupBox_Result_BMS = new System.Windows.Forms.GroupBox();
             this.dataGridView_Result_BMS = new System.Windows.Forms.DataGridView();
             this.toolTip_FormMain_BMS = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog_SaveFile_BMS = new System.Windows.Forms.SaveFileDialog();
-            this.textBox_Employees_BMS = new System.Windows.Forms.TextBox();
-            this.label_Employees_BMS = new System.Windows.Forms.Label();
             this.panel_Search_BMS.SuspendLayout();
             this.panel_Add_BMS.SuspendLayout();
             this.groupBox_Add_BMS.SuspendLayout();
@@ -349,6 +349,24 @@ namespace Project.V11
             this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(793, 434);
             this.panel_ResultAdd_BMS.TabIndex = 8;
             // 
+            // label_Employees_BMS
+            // 
+            this.label_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Employees_BMS.AutoSize = true;
+            this.label_Employees_BMS.Location = new System.Drawing.Point(587, 379);
+            this.label_Employees_BMS.Name = "label_Employees_BMS";
+            this.label_Employees_BMS.Size = new System.Drawing.Size(144, 13);
+            this.label_Employees_BMS.TabIndex = 29;
+            this.label_Employees_BMS.Text = "Общее число сотрудников:";
+            // 
+            // textBox_Employees_BMS
+            // 
+            this.textBox_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_Employees_BMS.Location = new System.Drawing.Point(737, 376);
+            this.textBox_Employees_BMS.Name = "textBox_Employees_BMS";
+            this.textBox_Employees_BMS.Size = new System.Drawing.Size(44, 20);
+            this.textBox_Employees_BMS.TabIndex = 28;
+            // 
             // button_SaveEditing_BMS
             // 
             this.button_SaveEditing_BMS.Location = new System.Drawing.Point(117, 379);
@@ -376,7 +394,6 @@ namespace Project.V11
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_Result_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Result_BMS.ColumnHeadersVisible = false;
             this.dataGridView_Result_BMS.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_Result_BMS.Name = "dataGridView_Result_BMS";
             this.dataGridView_Result_BMS.Size = new System.Drawing.Size(772, 354);
@@ -387,24 +404,6 @@ namespace Project.V11
             this.toolTip_FormMain_BMS.IsBalloon = true;
             this.toolTip_FormMain_BMS.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip_FormMain_BMS.ToolTipTitle = "Подсказка";
-            // 
-            // textBox_Employees_BMS
-            // 
-            this.textBox_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Employees_BMS.Location = new System.Drawing.Point(737, 376);
-            this.textBox_Employees_BMS.Name = "textBox_Employees_BMS";
-            this.textBox_Employees_BMS.Size = new System.Drawing.Size(44, 20);
-            this.textBox_Employees_BMS.TabIndex = 28;
-            // 
-            // label_Employees_BMS
-            // 
-            this.label_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Employees_BMS.AutoSize = true;
-            this.label_Employees_BMS.Location = new System.Drawing.Point(587, 379);
-            this.label_Employees_BMS.Name = "label_Employees_BMS";
-            this.label_Employees_BMS.Size = new System.Drawing.Size(144, 13);
-            this.label_Employees_BMS.TabIndex = 29;
-            this.label_Employees_BMS.Text = "Общее число сотрудников:";
             // 
             // FormMain
             // 
