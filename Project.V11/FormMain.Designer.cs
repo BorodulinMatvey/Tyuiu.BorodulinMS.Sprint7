@@ -31,6 +31,9 @@ namespace Project.V11
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel_Search_BMS = new System.Windows.Forms.Panel();
             this.textBox_Find_BMS = new System.Windows.Forms.TextBox();
             this.button_Find_BMS = new System.Windows.Forms.Button();
@@ -59,6 +62,8 @@ namespace Project.V11
             this.label_DateOfBirth_BMS = new System.Windows.Forms.Label();
             this.button_ShowResult_BMS = new System.Windows.Forms.Button();
             this.panel_ResultAdd_BMS = new System.Windows.Forms.Panel();
+            this.button_Filter_BMS = new System.Windows.Forms.Button();
+            this.comboBox_Filter_BMS = new System.Windows.Forms.ComboBox();
             this.label_Employees_BMS = new System.Windows.Forms.Label();
             this.textBox_Employees_BMS = new System.Windows.Forms.TextBox();
             this.button_SaveEditing_BMS = new System.Windows.Forms.Button();
@@ -66,12 +71,18 @@ namespace Project.V11
             this.dataGridView_Result_BMS = new System.Windows.Forms.DataGridView();
             this.toolTip_FormMain_BMS = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog_SaveFile_BMS = new System.Windows.Forms.SaveFileDialog();
+            this.panel_Schedule_BMS = new System.Windows.Forms.Panel();
+            this.groupBox_Schedule_BMS = new System.Windows.Forms.GroupBox();
+            this.chart_Schedule_BMS = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel_Search_BMS.SuspendLayout();
             this.panel_Add_BMS.SuspendLayout();
             this.groupBox_Add_BMS.SuspendLayout();
             this.panel_ResultAdd_BMS.SuspendLayout();
             this.groupBox_Result_BMS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result_BMS)).BeginInit();
+            this.panel_Schedule_BMS.SuspendLayout();
+            this.groupBox_Schedule_BMS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Schedule_BMS)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_Search_BMS
@@ -81,14 +92,14 @@ namespace Project.V11
             this.panel_Search_BMS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Search_BMS.Location = new System.Drawing.Point(0, 0);
             this.panel_Search_BMS.Name = "panel_Search_BMS";
-            this.panel_Search_BMS.Size = new System.Drawing.Size(1303, 53);
+            this.panel_Search_BMS.Size = new System.Drawing.Size(1322, 53);
             this.panel_Search_BMS.TabIndex = 6;
             this.panel_Search_BMS.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Button_BMS_Paint);
             // 
             // textBox_Find_BMS
             // 
             this.textBox_Find_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Find_BMS.Location = new System.Drawing.Point(1154, 21);
+            this.textBox_Find_BMS.Location = new System.Drawing.Point(1173, 21);
             this.textBox_Find_BMS.Name = "textBox_Find_BMS";
             this.textBox_Find_BMS.Size = new System.Drawing.Size(100, 20);
             this.textBox_Find_BMS.TabIndex = 28;
@@ -97,7 +108,7 @@ namespace Project.V11
             // 
             this.button_Find_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Find_BMS.Image = ((System.Drawing.Image)(resources.GetObject("button_Find_BMS.Image")));
-            this.button_Find_BMS.Location = new System.Drawing.Point(1260, 16);
+            this.button_Find_BMS.Location = new System.Drawing.Point(1279, 16);
             this.button_Find_BMS.Name = "button_Find_BMS";
             this.button_Find_BMS.Size = new System.Drawing.Size(31, 29);
             this.button_Find_BMS.TabIndex = 27;
@@ -110,7 +121,7 @@ namespace Project.V11
             this.panel_Add_BMS.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_Add_BMS.Location = new System.Drawing.Point(0, 53);
             this.panel_Add_BMS.Name = "panel_Add_BMS";
-            this.panel_Add_BMS.Size = new System.Drawing.Size(510, 532);
+            this.panel_Add_BMS.Size = new System.Drawing.Size(510, 595);
             this.panel_Add_BMS.TabIndex = 7;
             // 
             // groupBox_Add_BMS
@@ -139,7 +150,7 @@ namespace Project.V11
             this.groupBox_Add_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_Add_BMS.Location = new System.Drawing.Point(0, 0);
             this.groupBox_Add_BMS.Name = "groupBox_Add_BMS";
-            this.groupBox_Add_BMS.Size = new System.Drawing.Size(510, 532);
+            this.groupBox_Add_BMS.Size = new System.Drawing.Size(510, 595);
             this.groupBox_Add_BMS.TabIndex = 0;
             this.groupBox_Add_BMS.TabStop = false;
             this.groupBox_Add_BMS.Text = "Добавьте данные";
@@ -338,6 +349,8 @@ namespace Project.V11
             // 
             // panel_ResultAdd_BMS
             // 
+            this.panel_ResultAdd_BMS.Controls.Add(this.button_Filter_BMS);
+            this.panel_ResultAdd_BMS.Controls.Add(this.comboBox_Filter_BMS);
             this.panel_ResultAdd_BMS.Controls.Add(this.label_Employees_BMS);
             this.panel_ResultAdd_BMS.Controls.Add(this.textBox_Employees_BMS);
             this.panel_ResultAdd_BMS.Controls.Add(this.button_SaveEditing_BMS);
@@ -346,14 +359,37 @@ namespace Project.V11
             this.panel_ResultAdd_BMS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_ResultAdd_BMS.Location = new System.Drawing.Point(510, 53);
             this.panel_ResultAdd_BMS.Name = "panel_ResultAdd_BMS";
-            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(793, 434);
+            this.panel_ResultAdd_BMS.Size = new System.Drawing.Size(812, 434);
             this.panel_ResultAdd_BMS.TabIndex = 8;
+            // 
+            // button_Filter_BMS
+            // 
+            this.button_Filter_BMS.Location = new System.Drawing.Point(445, 398);
+            this.button_Filter_BMS.Name = "button_Filter_BMS";
+            this.button_Filter_BMS.Size = new System.Drawing.Size(75, 23);
+            this.button_Filter_BMS.TabIndex = 31;
+            this.button_Filter_BMS.Text = "Сортировать ";
+            this.button_Filter_BMS.UseVisualStyleBackColor = true;
+            this.button_Filter_BMS.Click += new System.EventHandler(this.button_Filter_BMS_Click);
+            // 
+            // comboBox_Filter_BMS
+            // 
+            this.comboBox_Filter_BMS.FormattingEnabled = true;
+            this.comboBox_Filter_BMS.Items.AddRange(new object[] {
+            "По алфавиту",
+            "По окладу",
+            "По возрасту"});
+            this.comboBox_Filter_BMS.Location = new System.Drawing.Point(303, 398);
+            this.comboBox_Filter_BMS.Name = "comboBox_Filter_BMS";
+            this.comboBox_Filter_BMS.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_Filter_BMS.TabIndex = 30;
+            this.comboBox_Filter_BMS.Text = "Сортировать по:";
             // 
             // label_Employees_BMS
             // 
             this.label_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Employees_BMS.AutoSize = true;
-            this.label_Employees_BMS.Location = new System.Drawing.Point(587, 379);
+            this.label_Employees_BMS.Location = new System.Drawing.Point(606, 379);
             this.label_Employees_BMS.Name = "label_Employees_BMS";
             this.label_Employees_BMS.Size = new System.Drawing.Size(144, 13);
             this.label_Employees_BMS.TabIndex = 29;
@@ -362,7 +398,7 @@ namespace Project.V11
             // textBox_Employees_BMS
             // 
             this.textBox_Employees_BMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Employees_BMS.Location = new System.Drawing.Point(737, 376);
+            this.textBox_Employees_BMS.Location = new System.Drawing.Point(756, 376);
             this.textBox_Employees_BMS.Name = "textBox_Employees_BMS";
             this.textBox_Employees_BMS.Size = new System.Drawing.Size(44, 20);
             this.textBox_Employees_BMS.TabIndex = 28;
@@ -383,7 +419,7 @@ namespace Project.V11
             this.groupBox_Result_BMS.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox_Result_BMS.Location = new System.Drawing.Point(0, 0);
             this.groupBox_Result_BMS.Name = "groupBox_Result_BMS";
-            this.groupBox_Result_BMS.Size = new System.Drawing.Size(793, 373);
+            this.groupBox_Result_BMS.Size = new System.Drawing.Size(812, 373);
             this.groupBox_Result_BMS.TabIndex = 26;
             this.groupBox_Result_BMS.TabStop = false;
             this.groupBox_Result_BMS.Text = "Вывод данных";
@@ -396,7 +432,7 @@ namespace Project.V11
             this.dataGridView_Result_BMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Result_BMS.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_Result_BMS.Name = "dataGridView_Result_BMS";
-            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(772, 354);
+            this.dataGridView_Result_BMS.Size = new System.Drawing.Size(791, 354);
             this.dataGridView_Result_BMS.TabIndex = 0;
             // 
             // toolTip_FormMain_BMS
@@ -405,11 +441,49 @@ namespace Project.V11
             this.toolTip_FormMain_BMS.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip_FormMain_BMS.ToolTipTitle = "Подсказка";
             // 
+            // panel_Schedule_BMS
+            // 
+            this.panel_Schedule_BMS.Controls.Add(this.groupBox_Schedule_BMS);
+            this.panel_Schedule_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_Schedule_BMS.Location = new System.Drawing.Point(510, 487);
+            this.panel_Schedule_BMS.Name = "panel_Schedule_BMS";
+            this.panel_Schedule_BMS.Size = new System.Drawing.Size(812, 161);
+            this.panel_Schedule_BMS.TabIndex = 9;
+            // 
+            // groupBox_Schedule_BMS
+            // 
+            this.groupBox_Schedule_BMS.Controls.Add(this.chart_Schedule_BMS);
+            this.groupBox_Schedule_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox_Schedule_BMS.Location = new System.Drawing.Point(0, 0);
+            this.groupBox_Schedule_BMS.Name = "groupBox_Schedule_BMS";
+            this.groupBox_Schedule_BMS.Size = new System.Drawing.Size(812, 161);
+            this.groupBox_Schedule_BMS.TabIndex = 0;
+            this.groupBox_Schedule_BMS.TabStop = false;
+            this.groupBox_Schedule_BMS.Text = "Вывод графиков ";
+            // 
+            // chart_Schedule_BMS
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart_Schedule_BMS.ChartAreas.Add(chartArea1);
+            this.chart_Schedule_BMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart_Schedule_BMS.Legends.Add(legend1);
+            this.chart_Schedule_BMS.Location = new System.Drawing.Point(3, 16);
+            this.chart_Schedule_BMS.Name = "chart_Schedule_BMS";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart_Schedule_BMS.Series.Add(series1);
+            this.chart_Schedule_BMS.Size = new System.Drawing.Size(806, 142);
+            this.chart_Schedule_BMS.TabIndex = 0;
+            this.chart_Schedule_BMS.Text = "chart1";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1303, 585);
+            this.ClientSize = new System.Drawing.Size(1322, 648);
+            this.Controls.Add(this.panel_Schedule_BMS);
             this.Controls.Add(this.panel_ResultAdd_BMS);
             this.Controls.Add(this.panel_Add_BMS);
             this.Controls.Add(this.panel_Search_BMS);
@@ -428,6 +502,9 @@ namespace Project.V11
             this.panel_ResultAdd_BMS.PerformLayout();
             this.groupBox_Result_BMS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result_BMS)).EndInit();
+            this.panel_Schedule_BMS.ResumeLayout(false);
+            this.groupBox_Schedule_BMS.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Schedule_BMS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -469,6 +546,11 @@ namespace Project.V11
         private System.Windows.Forms.Button button_SaveEditing_BMS;
         private System.Windows.Forms.TextBox textBox_Employees_BMS;
         private System.Windows.Forms.Label label_Employees_BMS;
+        private System.Windows.Forms.Button button_Filter_BMS;
+        private System.Windows.Forms.ComboBox comboBox_Filter_BMS;
+        private System.Windows.Forms.Panel panel_Schedule_BMS;
+        private System.Windows.Forms.GroupBox groupBox_Schedule_BMS;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_Schedule_BMS;
     }
 }
 

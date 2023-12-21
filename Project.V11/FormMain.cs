@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
+using System.Windows.Forms.DataVisualization.Charting;
 using Project.V11.Lib;
 
 
@@ -26,7 +27,7 @@ namespace Project.V11
         public FormMain()
         {
             InitializeComponent();
-            
+
         }
         DataService ds = new DataService();
 
@@ -498,31 +499,26 @@ namespace Project.V11
 
         private void textBox_Salarry_BMS_TextChanged(object sender, EventArgs e)
         {
+            // Получаем текущий текст из текстового поля
+            string currentText = textBox_Salarry_BMS.Text;
+
+            // Создаем новую строку, оставляя только цифры и управляющие символы
+            string filteredText = new string(currentText.Where(c => char.IsDigit(c) || char.IsControl(c)).ToArray());
+
+            // Преобразуем текст в числовое значение
+            if (decimal.TryParse(filteredText, out decimal salary))
             {
-                // Получаем текущий текст из текстового поля
-                string currentText = textBox_Salarry_BMS.Text;
-
-                // Проверяем, содержит ли текст буквы
-                if (currentText.Any(char.IsLetter))
-                {
-                    // Если есть буквы, выдаем ошибку и очищаем поле
-                    MessageBox.Show("Пожалуйста, вводите только цифры.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBox_Salarry_BMS.Clear();
-                    return;
-                }
-
-                // Создаем новую строку, оставляя только цифры и управляющие символы
-                string filteredText = new string(currentText.Where(c => char.IsDigit(c) || char.IsControl(c)).ToArray());
-
-                // Если текст изменился, обновляем текстовое поле
-                if (currentText != filteredText)
-                {
-                    textBox_Salarry_BMS.Text = filteredText;
-
-                    // Устанавливаем курсор в конец текста
-                    textBox_Salarry_BMS.SelectionStart = filteredText.Length;
-                }
+                // Оставляем только числа в текстовом поле
+                textBox_Salarry_BMS.Text = filteredText;
             }
+            else
+            {
+                // Если текст не может быть преобразован в число, очищаем поле
+                textBox_Salarry_BMS.Text = string.Empty;
+            }
+
+            // Устанавливаем курсор в конец текста
+            textBox_Salarry_BMS.SelectionStart = textBox_Salarry_BMS.Text.Length;
         }
 
         private void textBox_DateOfBirth_BMS_TextChanged(object sender, EventArgs e)
@@ -543,6 +539,118 @@ namespace Project.V11
         {
             DateTime result;
             return DateTime.TryParseExact(dateText, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out result);
+        }
+
+        private void button_Filter_BMS_Click(object sender, EventArgs e)
+        {
+            // Проверяем, выбрана ли сортировка по алфавиту
+            if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "По алфавиту")
+            {
+                // Проводим сортировку по алфавиту
+                SortDataTableAlphabetically();
+            }
+            // Проверяем, выбрана ли сортировка по окладу
+            else if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "По окладу")
+            {
+                // Проводим сортировку по окладу
+                SortDataTableBySalary();
+            }
+            // Проверяем, выбрана ли сортировка по возрасту
+            else if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "По возрасту")
+            {
+                // Проводим сортировку по возрасту
+                SortDataTableByAge();
+            }
+            else
+            {
+                // Другие варианты фильтрации, если необходимо
+            }
+        }
+
+        private void SortDataTableAlphabetically()
+        {
+            // Проверяем, есть ли у DataGridView связанный источник данных
+            if (dataGridView_Result_BMS.DataSource is DataTable dataTable)
+            {
+                // Получаем представление данных
+                DataView dataView = dataTable.DefaultView;
+
+                // Проводим сортировку по первому столбцу
+                dataView.Sort = $"{dataTable.Columns[0].ColumnName} ASC";
+
+                // Применяем изменения к DataGridView
+                dataGridView_Result_BMS.DataSource = dataView.ToTable();
+            }
+            else
+            {
+                // Если DataGridView не связан с DataTable, нечего сортировать
+                MessageBox.Show("Сначала загрузите данные в DataGridView.");
+            }
+        }
+        private void SortDataTableByAge()
+        {
+            if (dataGridView_Result_BMS.DataSource is DataTable dataTable)
+            {
+                // Конвертируем строки с датами в объекты DateTime
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    if (DateTime.TryParseExact(row[8].ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+                    {
+                        row[8] = date;
+                    }
+                }
+
+                // Создаем представление данных
+                DataView dataView = dataTable.DefaultView;
+
+                // Сортируем данные по дате в порядке убывания
+                dataView.Sort = $"{dataTable.Columns[8].ColumnName} DESC";
+
+                // Применяем изменения к DataGridView
+                dataGridView_Result_BMS.DataSource = dataView.ToTable();
+
+                
+            }
+            else
+            {
+                MessageBox.Show("Сначала загрузите данные в DataGridView.");
+            }
+        }
+        private void SortDataTableBySalary()
+        {
+            // Проверяем, что в DataGridView есть связанный источник данных и это DataTable
+            if (dataGridView_Result_BMS.DataSource is DataTable dataTable)
+            {
+                // Конвертируем строки с окладами в числовой формат
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    // Получаем текущее значение оклада в строке
+                    string salaryString = row["Оклад"].ToString();
+
+                    // Удаляем все символы, кроме цифр и точки
+                    string numericString = new string(salaryString.Where(c => char.IsDigit(c) || c == '.').ToArray());
+
+                    // Пытаемся преобразовать в число
+                    if (decimal.TryParse(numericString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal salary))
+                    {
+                        // Записываем числовое значение обратно в ячейку
+                        row["Оклад"] = salary;
+                    }
+                }
+
+                // Сортируем данные по числовому столбцу "Оклад" в порядке возрастания
+                dataTable.DefaultView.Sort = "Оклад ASC";
+
+                // Применяем изменения к DataGridView
+                dataGridView_Result_BMS.DataSource = dataTable;
+
+                // Отображение данных на графике (если нужно)
+                // DisplayChart(dataTable);
+            }
+            else
+            {
+                MessageBox.Show("Сначала загрузите данные в DataGridView.");
+            }
         }
     }
 }

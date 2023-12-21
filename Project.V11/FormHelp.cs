@@ -21,5 +21,10 @@ namespace Project.V11
         {
             this.Close();
         }
+
+        private void FormHelp_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
