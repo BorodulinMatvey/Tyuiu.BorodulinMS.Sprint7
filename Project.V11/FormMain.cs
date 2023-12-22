@@ -676,7 +676,17 @@ namespace Project.V11
             {
 
             }
-        
+
+        private void groupBox_Find_BMS_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_About_BMS_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
+        }
     }
 }    
 

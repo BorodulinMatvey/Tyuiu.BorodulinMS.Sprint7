@@ -10,6 +10,7 @@ namespace Project.V11.Test
         [TestMethod]
         public void CountCsvLines_ExcludeHeader_CorrectCount()
         {
+
             // Утверждение
             string testFilePath = @"C:\Users\motya\Source\Repos\Tyuiu.BorodulinMS.Sprint7\Project.V11\bin\Debug\Файл для проверки тестового метода (подсчет строк, не учитывая первую).csv";
 

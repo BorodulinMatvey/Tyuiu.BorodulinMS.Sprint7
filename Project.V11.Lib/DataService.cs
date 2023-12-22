@@ -15,6 +15,7 @@ namespace Project.V11.Lib
 
             using (var reader = new StreamReader(filePath))
             {
+
                 // Пропускаем заголовок
                 reader.ReadLine();
 
