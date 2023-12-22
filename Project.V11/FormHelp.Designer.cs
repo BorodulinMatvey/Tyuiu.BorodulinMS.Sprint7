@@ -40,22 +40,22 @@ namespace Project.V11
             // 
             this.label_HelpText_BMS.Location = new System.Drawing.Point(4, 9);
             this.label_HelpText_BMS.Name = "label_HelpText_BMS";
-            this.label_HelpText_BMS.Size = new System.Drawing.Size(626, 179);
+            this.label_HelpText_BMS.Size = new System.Drawing.Size(772, 281);
             this.label_HelpText_BMS.TabIndex = 0;
             this.label_HelpText_BMS.Text = resources.GetString("label_HelpText_BMS.Text");
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(217, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(215, 68);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 34);
+            this.pictureBox1.Size = new System.Drawing.Size(29, 30);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // button_Ok_BMS
             // 
-            this.button_Ok_BMS.Location = new System.Drawing.Point(523, 179);
+            this.button_Ok_BMS.Location = new System.Drawing.Point(725, 293);
             this.button_Ok_BMS.Name = "button_Ok_BMS";
             this.button_Ok_BMS.Size = new System.Drawing.Size(75, 23);
             this.button_Ok_BMS.TabIndex = 2;
@@ -67,7 +67,7 @@ namespace Project.V11
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 214);
+            this.ClientSize = new System.Drawing.Size(812, 328);
             this.Controls.Add(this.button_Ok_BMS);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label_HelpText_BMS);

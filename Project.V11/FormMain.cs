@@ -52,7 +52,7 @@ namespace Project.V11
                 string JobTitle = textBox_JobTitle_BMS.Text;
 
                 // Проверяем, что все TextBox'ы содержат текст
-                if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(SurName) ||
+                if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Name) ||
                     string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(PhoneNumber) || string.IsNullOrWhiteSpace(Salary) ||
                     string.IsNullOrWhiteSpace(DivisionName) || string.IsNullOrWhiteSpace(DateOfBirth) || string.IsNullOrWhiteSpace(JobTitle))
                 {
@@ -78,7 +78,7 @@ namespace Project.V11
                             // Если файл пуст, добавляем заголовки столбцов
                             if (new FileInfo(savedFilePath).Length == 0)
                             {
-                                string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Оклад;Наименование подразделения;Дата рождения;Должность";
+                                string header = "Фамилия;Имя;Отчество;Адрес;Номер Телефона;Наименование подразделения;Дата рождения;Должность;Оклад";
                                 sw.WriteLine(header);
                             }
 
@@ -111,7 +111,7 @@ namespace Project.V11
             string JobTitle = textBox_JobTitle_BMS.Text;
 
             // Проверяем, что все TextBox'ы содержат текст
-            if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(SurName) ||
+            if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Name) ||
                 string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(PhoneNumber) || string.IsNullOrWhiteSpace(Salary) ||
                 string.IsNullOrWhiteSpace(DivisionName) || string.IsNullOrWhiteSpace(DateOfBirth) || string.IsNullOrWhiteSpace(JobTitle))
             {
@@ -544,29 +544,50 @@ namespace Project.V11
         private void button_Filter_BMS_Click(object sender, EventArgs e)
         {
             // Проверяем, выбрана ли сортировка по алфавиту
-            if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "По алфавиту")
+            if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "Фамилии в алфавитном порядке ")
             {
                 // Проводим сортировку по алфавиту
                 SortDataTableAlphabetically();
             }
+            else if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "Имени в алфавитном порядке ")
+            {
+                // Проводим сортировку по имени
+                SortDataTableByName();
+            }
             // Проверяем, выбрана ли сортировка по окладу
-            else if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "По окладу")
+            else if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "Окладу")
             {
                 // Проводим сортировку по окладу
                 SortDataTableBySalary();
             }
-            // Проверяем, выбрана ли сортировка по возрасту
-            else if (comboBox_Filter_BMS.SelectedItem != null && comboBox_Filter_BMS.SelectedItem.ToString() == "По возрасту")
-            {
-                // Проводим сортировку по возрасту
-                SortDataTableByAge();
-            }
+
             else
             {
                 // Другие варианты фильтрации, если необходимо
             }
         }
+        //Сортировка по имени 
+        private void SortDataTableByName()
+        {
+            // Проверяем, есть ли у DataGridView связанный источник данных
+            if (dataGridView_Result_BMS.DataSource is DataTable dataTable)
+            {
+                // Получаем представление данных
+                DataView dataView = dataTable.DefaultView;
 
+                // Проводим сортировку по второму столбцу
+                dataView.Sort = $"{dataTable.Columns[1].ColumnName} ASC";
+
+                // Применяем изменения к DataGridView
+                dataGridView_Result_BMS.DataSource = dataView.ToTable();
+            }
+            else
+            {
+                // Если DataGridView не связан с DataTable, нечего сортировать
+                MessageBox.Show("Сначала загрузите данные в DataGridView.");
+            }
+        }
+        //Сортирока по фамилии
         private void SortDataTableAlphabetically()
         {
             // Проверяем, есть ли у DataGridView связанный источник данных
@@ -587,72 +608,75 @@ namespace Project.V11
                 MessageBox.Show("Сначала загрузите данные в DataGridView.");
             }
         }
-        private void SortDataTableByAge()
-        {
-            if (dataGridView_Result_BMS.DataSource is DataTable dataTable)
-            {
-                // Конвертируем строки с датами в объекты DateTime
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    if (DateTime.TryParseExact(row[8].ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
-                    {
-                        row[8] = date;
-                    }
-                }
-
-                // Создаем представление данных
-                DataView dataView = dataTable.DefaultView;
-
-                // Сортируем данные по дате в порядке убывания
-                dataView.Sort = $"{dataTable.Columns[8].ColumnName} DESC";
-
-                // Применяем изменения к DataGridView
-                dataGridView_Result_BMS.DataSource = dataView.ToTable();
-
-                
-            }
-            else
-            {
-                MessageBox.Show("Сначала загрузите данные в DataGridView.");
-            }
-        }
+        //Сортировка по Окладу
         private void SortDataTableBySalary()
         {
-            // Проверяем, что в DataGridView есть связанный источник данных и это DataTable
+            // Предполагается, что "dataGridView_Result_BMS" - это имя вашего DataGridView
             if (dataGridView_Result_BMS.DataSource is DataTable dataTable)
             {
-                // Конвертируем строки с окладами в числовой формат
-                foreach (DataRow row in dataTable.Rows)
+                // Предположим, что "Оклад" - это название столбца с окладом
+                string columnNameOfSalaryColumn = "Оклад";
+
+                // Проверка существования столбца в DataTable
+                if (dataTable.Columns.Contains(columnNameOfSalaryColumn))
                 {
-                    // Получаем текущее значение оклада в строке
-                    string salaryString = row["Оклад"].ToString();
+                    // Создание нового столбца с типом данных Decimal
+                    DataColumn newColumn = new DataColumn(columnNameOfSalaryColumn + "_Decimal", typeof(decimal));
 
-                    // Удаляем все символы, кроме цифр и точки
-                    string numericString = new string(salaryString.Where(c => char.IsDigit(c) || c == '.').ToArray());
+                    // Получение индекса столбца "Оклад"
+                    int columnIndex = dataTable.Columns.IndexOf(columnNameOfSalaryColumn);
 
-                    // Пытаемся преобразовать в число
-                    if (decimal.TryParse(numericString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal salary))
+                    // Добавление нового столбца в DataTable
+                    dataTable.Columns.Add(newColumn);
+
+                    // Заполнение нового столбца данными из старого столбца
+                    foreach (DataRow row in dataTable.Rows)
                     {
-                        // Записываем числовое значение обратно в ячейку
-                        row["Оклад"] = salary;
+                        // Парсинг данных из старого столбца и запись в новый
+                        decimal salaryValue;
+                        if (decimal.TryParse(row[columnNameOfSalaryColumn].ToString(), out salaryValue))
+                        {
+                            row[newColumn] = salaryValue;
+                        }
+                        else
+                        {
+                            // Обработка некорректных данных, например, установка значения по умолчанию
+                            row[newColumn] = 0;
+                        }
                     }
+
+                    // Удаление старого столбца
+                    dataTable.Columns.Remove(columnNameOfSalaryColumn);
+
+                    // Установка позиции нового столбца на место старого
+                    newColumn.SetOrdinal(columnIndex);
+
+                    // Переименование нового столбца обратно на "Оклад"
+                    newColumn.ColumnName = columnNameOfSalaryColumn;
+
+                    // Получение данных из DataTable
+                    DataView dataView = new DataView(dataTable);
+
+                    // Сортировка данных по 5-му столбцу
+                    dataView.Sort = $"{columnNameOfSalaryColumn} ASC";
+
+                    // Обновление источника данных в DataGridView
+                    dataGridView_Result_BMS.DataSource = dataView.ToTable();
+
+                    
                 }
-
-                // Сортируем данные по числовому столбцу "Оклад" в порядке возрастания
-                dataTable.DefaultView.Sort = "Оклад ASC";
-
-                // Применяем изменения к DataGridView
-                dataGridView_Result_BMS.DataSource = dataTable;
-
-                // Отображение данных на графике (если нужно)
-                // DisplayChart(dataTable);
-            }
-            else
-            {
-                MessageBox.Show("Сначала загрузите данные в DataGridView.");
+                else
+                {
+                    MessageBox.Show($"Столбец {columnNameOfSalaryColumn} не найден.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+       
+        private void textBox_SurName_BMS_TextChanged(object sender, EventArgs e)
+            {
+
+            }
+        
     }
-}
-    
+}    
 
